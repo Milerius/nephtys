@@ -7,7 +7,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-8
-
+      env: NEPHTYS_CMAKE_DEBUG_GCC_8=ON
 before_install:
   - eval "${MATRIX_EVAL}"
 
@@ -24,7 +24,10 @@ install:
   - cd -
 
 script:
-  - mkdir cmake-build-debug
-  - cd cmake-build-debug
-  - ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
-  - make -j2
+  - |
+    if [[ -z "${NEPHTYS_CMAKE_DEBUG_GCC_8}" ]]; then
+      mkdir cmake-build-debug
+      cd cmake-build-debug
+      ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
+      make -j2
+    fi
