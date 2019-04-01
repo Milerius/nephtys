@@ -7,7 +7,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-8
-    env: NEPHTYS_CMAKE_DEBUG_GCC_8=ON
+      env: NEPHTYS_CMAKE_DEBUG_GCC_8=ON
 before_install:
   - eval "${MATRIX_EVAL}"
 
