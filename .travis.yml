@@ -16,6 +16,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-8
+            - python3
       env: NEPHTYS_MESON_DEBUG_GCC_8=ON
 
 install:
