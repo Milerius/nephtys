@@ -34,6 +34,7 @@ install:
     if [[ "${TRAVIS_OS_NAME}" == "linux" -a -z "${NEPHTYS_MESON_DEBUG_GCC_8}" ]]; then
       pip3 install meson
       meson
+      whereis meson
     fi
   - cd -
 
