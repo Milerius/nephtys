@@ -1,4 +1,6 @@
 # Prerequisites
+.bake_cache
+bin
 *.d
 *.vscode
 cmake-build-debug
