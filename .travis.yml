@@ -18,9 +18,6 @@ matrix:
             - g++-8
       env: NEPHTYS_MESON_DEBUG_GCC_8=ON
 
-before_install:
-  - eval "${MATRIX_EVAL}"
-
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
@@ -35,6 +32,7 @@ install:
   - |
     if [[ "${TRAVIS_OS_NAME}" == "linux" &&  -z "${NEPHTYS_MESON_DEBUG_GCC_8}" ]]; then
       pip3 install meson
+      meson
     fi
   - cd -
 
