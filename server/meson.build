@@ -1,5 +1,5 @@
 set_variable('exe_dir', include_directories('.'))
-set_variable('exe_src', files('main.cpp'))
+set_variable('exe_src', files('src/main.cpp'))
 
 extra_args = []
 

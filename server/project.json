@@ -1,0 +1,22 @@
+{
+  "id": "nephtys_server",
+  "type": "application",
+  "value": {
+    "author": "Roman Sztergbaum",
+    "description": "secret for the moment",
+    "language": "c++"
+  },
+  "lang.cpp": {
+    "include": [
+      "include"
+    ],
+    "cpp-standard": "c++17",
+    "${os linux}": {
+      "cxxflags": [
+        "-Wall",
+        "-Wextra",
+        "-Wfatal-errors"
+      ]
+    }
+  }
+}
