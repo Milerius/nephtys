@@ -30,12 +30,12 @@ install:
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
     fi
 
-  #- |
-  #  if [[ "${TRAVIS_OS_NAME}" == "linux" && -f ${NEPHTYS_MESON_DEBUG_GCC_8} ]]; then
-  #    pip3 install meson
-  #    meson
-  #    whereis meson
-  #  fi
+  - |
+    if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_MESON_DEBUG_GCC_8}" == ON ]; then
+      pip3 install meson
+      meson
+      whereis meson
+    fi
   - cd -
 
 script:
