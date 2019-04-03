@@ -1,6 +1,11 @@
+language: python
+python: 3.7
+sudo: true
+
 matrix:
   include:
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
@@ -10,6 +15,7 @@ matrix:
       env: NEPHTYS_CMAKE_DEBUG_GCC_8=ON
 
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
