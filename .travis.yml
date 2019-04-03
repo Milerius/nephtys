@@ -22,7 +22,10 @@ matrix:
           packages:
             - ninja-build
             - g++-8
-      env: NEPHTYS_MESON_DEBUG_GCC_8=ON
+      env:
+        - NEPHTYS_MESON_DEBUG_GCC_8=ON
+        - CXX=g++-8
+        - CC=gcc-8
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
