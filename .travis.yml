@@ -27,6 +27,18 @@ matrix:
         - CXX=g++-8
         - CC=gcc-8
 
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - NEPHTYS_BAKE_DEBUG_GCC_8=ON
+        - CXX=g++-8
+        - CC=gcc-8
+
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
@@ -43,6 +55,13 @@ install:
       pip install meson
       whereis meson
     fi
+
+    - |
+        if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_BAKE_DEBUG_GCC_8}" == ON ]; then
+          git clone https://github.com/SanderMertens/bake
+          make -C bake/build-$(uname)
+          bake/bake setup
+        fi
   - cd -
 
 script:
