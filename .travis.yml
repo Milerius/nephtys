@@ -1,6 +1,7 @@
 matrix:
   include:
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
@@ -8,26 +9,80 @@ matrix:
           packages:
             - g++-8
       env: NEPHTYS_CMAKE_DEBUG_GCC_8=ON
-before_install:
-  - eval "${MATRIX_EVAL}"
+
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - ninja-build
+            - g++-8
+      env:
+        - NEPHTYS_MESON_DEBUG_GCC_8=ON
+        - CXX=g++-8
+        - CC=gcc-8
+
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - NEPHTYS_BAKE_DEBUG_GCC_8=ON
+        - CXX=g++-8
+        - CC=gcc-8
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
 
   - |
-    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+    if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == "ON" ]; then
       CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.0-Linux-x86_64.tar.gz"
       mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
     fi
+
+  - |
+    if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_MESON_DEBUG_GCC_8}" == ON ]; then
+      pip install meson
+      whereis meson
+    fi
+
+    - |
+        if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_BAKE_DEBUG_GCC_8}" == ON ]; then
+          git clone https://github.com/SanderMertens/bake
+          make -C bake/build-$(uname)
+          bake/bake setup
+          export PATH=$PATH:$HOME/bake
+        fi
   - cd -
 
 script:
   - |
-    if [[ -z "${NEPHTYS_CMAKE_DEBUG_GCC_8}" ]]; then
+    if [[ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == ON ]]; then
       mkdir cmake-build-debug
       cd cmake-build-debug
       ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
-      make -j2
+      make VERBOSE=1 -j2
+    fi
+
+  - |
+    if [[ "${NEPHTYS_MESON_DEBUG_GCC_8}" == ON ]]; then
+      meson meson-build-debug
+      cd meson-build-debug
+      ninja -v
+    fi
+
+  - |
+    if [[ "${NEPHTYS_BAKE_DEBUG_GCC_8}" == ON ]]; then
+        bake server
+        bake client
     fi
