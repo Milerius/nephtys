@@ -24,14 +24,14 @@ install:
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
 
   - |
-    if [[ "${TRAVIS_OS_NAME}" == "linux" -a -z "${NEPHTYS_CMAKE_DEBUG_GCC_8}" ]]; then
+    if [[ -f "${TRAVIS_OS_NAME}" == "linux" && -f ${NEPHTYS_CMAKE_DEBUG_GCC_8} ]]; then
       CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.0-Linux-x86_64.tar.gz"
       mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
     fi
 
   - |
-    if [[ "${TRAVIS_OS_NAME}" == "linux" -a -z "${NEPHTYS_MESON_DEBUG_GCC_8}" ]]; then
+    if [[ "${TRAVIS_OS_NAME}" == "linux" && -f ${NEPHTYS_MESON_DEBUG_GCC_8} ]]; then
       pip3 install meson
       meson
       whereis meson
@@ -40,7 +40,7 @@ install:
 
 script:
   - |
-    if [[ -z "${NEPHTYS_CMAKE_DEBUG_GCC_8}" ]]; then
+    if [[ -f ${NEPHTYS_CMAKE_DEBUG_GCC_8} ]]; then
       mkdir cmake-build-debug
       cd cmake-build-debug
       ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
