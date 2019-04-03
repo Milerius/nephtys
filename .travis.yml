@@ -20,8 +20,8 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
+            - ninja-build
             - g++-8
-            - python3-pip
       env: NEPHTYS_MESON_DEBUG_GCC_8=ON
 
 install:
@@ -37,7 +37,7 @@ install:
 
   - |
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_MESON_DEBUG_GCC_8}" == ON ]; then
-      pip3 install meson
+      pip install meson
       meson
       whereis meson
     fi
