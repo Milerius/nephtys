@@ -41,7 +41,6 @@ install:
   - |
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_MESON_DEBUG_GCC_8}" == ON ]; then
       pip install meson
-      meson
       whereis meson
     fi
   - cd -
@@ -52,5 +51,12 @@ script:
       mkdir cmake-build-debug
       cd cmake-build-debug
       ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
-      make -j2
+      make VERBOSE=1 -j2
+    fi
+
+  - |
+    if [[ "${NEPHTYS_MESON_DEBUG_GCC_8}" == ON ]]
+      meson meson-build-debug
+      cd meson-build-debug
+      ninja -v
     fi
