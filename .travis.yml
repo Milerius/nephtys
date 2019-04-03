@@ -55,7 +55,7 @@ script:
     fi
 
   - |
-    if [[ "${NEPHTYS_MESON_DEBUG_GCC_8}" == ON ]]
+    if [[ "${NEPHTYS_MESON_DEBUG_GCC_8}" == ON ]]; then
       meson meson-build-debug
       cd meson-build-debug
       ninja -v
