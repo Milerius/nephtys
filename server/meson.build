@@ -1,5 +1,6 @@
 set_variable('exe_dir', include_directories('.'))
-set_variable('exe_src', files('src/main.cpp'))
+
+src = ['src/main.cpp']
 
 extra_args = []
 
@@ -13,7 +14,7 @@ if meson.get_compiler('cpp').get_id() == 'gcc' and get_option('buildtype') == 'd
 endif
 
 exe_main = executable('nephtys_server',
-    sources      : exe_src,
+    sources      : src,
     install_dir  : 'nephtys',
     install      : true,
     cpp_args     : extra_args
