@@ -2,6 +2,7 @@ matrix:
   include:
     - os: linux
       language: python
+      cache: pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -14,6 +15,7 @@ matrix:
       env: NEPHTYS_CMAKE_DEBUG_GCC_8=ON
 
 install:
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
 
