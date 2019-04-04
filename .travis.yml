@@ -1,6 +1,9 @@
 matrix:
   include:
     - os: linux
+      language: python
+      python: 3.7
+      sudo: true
       dist: xenial
       addons:
         apt:
@@ -19,6 +22,8 @@ install:
       CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.0-Linux-x86_64.tar.gz"
       mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+      pip install conan
+      conan profile update settings.compiler.libcxx=libstdc++11 default  # Sets libcxx to C++11 ABI
     fi
 
   - cd -
@@ -28,6 +33,7 @@ script:
     if [[ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == ON ]]; then
       mkdir cmake-build-debug
       cd cmake-build-debug
+      conan install ../
       ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
       make VERBOSE=1 -j2
     fi
