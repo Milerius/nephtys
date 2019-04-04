@@ -23,6 +23,7 @@ install:
       mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
       pip install conan
+      conan profile new default --detect
       conan profile update settings.compiler.libcxx=libstdc++11 default  # Sets libcxx to C++11 ABI
     fi
 
