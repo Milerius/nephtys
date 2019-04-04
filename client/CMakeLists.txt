@@ -1,6 +1,6 @@
 add_executable(nephtys_client)
 
-target_sources(nephtys_client PUBLIC src/main.cpp)
+target_sources(nephtys_client PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 target_compile_options(nephtys_client PUBLIC
         $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:Clang>>:-O2 -march=native -Wall -Wextra -Wfatal-errors>
         $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU>>:-O2 -march=native -Wall -Wextra -Wfatal-errors>

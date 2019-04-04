@@ -6,9 +6,11 @@ endif ()
 cmake_minimum_required(VERSION 3.9)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 17)
-
-##! Project
 project(nepthys)
+
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
+##! Project
 
 ##! Sub-Projects
 add_subdirectory(client)
