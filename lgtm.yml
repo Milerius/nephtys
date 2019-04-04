@@ -17,3 +17,4 @@ extraction:
       - mkdir $LGTM_SRC/build
       - cd $LGTM_SRC/build
       - conan install ../
+      - cd -
