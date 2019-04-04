@@ -5,6 +5,7 @@ extraction:
         - python-pip
     after_prepare:    # Customizable step used by all languages.
       - pip3 install --local cmake conan
+      - pip3 install --local cmake conan --upgrade
       - ls ~/.local/bin
       - export PATH=$PATH:~/.local/bin
       - conan --version
