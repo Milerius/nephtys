@@ -15,7 +15,7 @@ extraction:
       - conan profile update settings.compiler.libcxx=libstdc++11 default
       - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
       - conan remote add skypjack https://api.bintray.com/conan/skypjack/conan
-      - mkdir $LGTM_SRC/build
-      - cd $LGTM_SRC/build
+      - mkdir $LGTM_SRC/_lgtm_build_dir
+      - cd $LGTM_SRC/_lgtm_build_dir
       - conan install ../
       - cd -
