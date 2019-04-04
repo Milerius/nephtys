@@ -3,6 +3,7 @@ extraction:
     prepare:    # Customizable step used by all languages.
       packages:
         - python-pip
+        - pkg-config
     after_prepare:    # Customizable step used by all languages.
       - pip3 install --local cmake conan
       - ls ~/.local/bin
