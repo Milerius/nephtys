@@ -1,0 +1,8 @@
+[requires]
+sfml/2.5.1@bincrafters/stable
+entt/3.x.y-WIP@skypjack/stable
+asio/1.13.0@bincrafters/stable
+jsonformoderncpp/3.6.1@vthiery/stable
+
+[generators]
+cmake
