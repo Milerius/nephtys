@@ -20,6 +20,7 @@ install:
   - conan remote add skypjack https://api.bintray.com/conan/skypjack/conan
 
 before_build:
+  - git submodule -q update --init
   - mkdir cmake-build-debug
   - cd cmake-build-debug
   - conan install ../
