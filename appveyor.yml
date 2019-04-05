@@ -30,7 +30,7 @@ before_build:
 build_script:
   - cmake --build . --config Debug
   - cd bin
-  - ./nephtys-client-test --reporters=xml --out=result.xml -s
+  - nephtys-client-test.exe --reporters=xml --out=result.xml -s
 
 on_failure:
   - curl -s https://report.ci/annotate.py | python - --tool msvc --input build.log
