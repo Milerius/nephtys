@@ -8,3 +8,5 @@
 | Codacy         | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/03467b03fbdf4454ba5b6cbac214813f)](https://www.codacy.com/app/Milerius/nephtys?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Milerius/nephtys&amp;utm_campaign=Badge_Grade)  |
 | Issues         |  ![GitHub issues](https://img.shields.io/github/issues/milerius/nephtys.svg) |
 | License | ![GitHub](https://img.shields.io/github/license/milerius/nephtys.svg) |
+| Report.CI (AppVeyor) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=appveyor)](https://report.ci/status/Milerius/nephtys?branch=master&build=appveyor) |
+| Report.CI (Travis) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=travis-ci)](https://report.ci/status/Milerius/nephtys?branch=master&build=travis-ci) |
