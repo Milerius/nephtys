@@ -1,5 +1,8 @@
 add_executable(nephtys_client)
 
+set(nephtys_client_sources
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.cpp)
+
 target_sources(nephtys_client PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 target_compile_options(nephtys_client PUBLIC
         $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:Clang>>:-O2 -march=native -Wall -Wextra -Wfatal-errors>
@@ -8,3 +11,21 @@ target_compile_options(nephtys_client PUBLIC
         $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:Clang>>:-O0 -g -Wall -Wextra -Wfatal-errors>
         $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Zi /FS /DEBUG /Od /MP /MDd /Oy- /W4 /permissive- /std:c++latest>
         $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2 -DNDEBUG /MP /W4 /permissive- /std:c++latest>)
+target_link_libraries(nephtys_client PRIVATE CONAN_PKG::sfml CONAN_PKG::entt CONAN_PKG::jsonformoderncpp)
+target_include_directories(nephtys_client PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/common/include
+        ${PROJECT_SOURCE_DIR}/vendor/strong_type/include)
+
+##Properties
+get_target_property(nephtys_client_libraries nephtys_client LINK_LIBRARIES)
+get_target_property(nephtys_client_include_directories nephtys_client INCLUDE_DIRECTORIES)
+
+##! Test
+add_executable(nephtys-client-test)
+target_sources(nephtys-client-test PUBLIC
+        ${nephtys_client_sources}
+        ${CMAKE_CURRENT_SOURCE_DIR}/test/test_client.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.test.cpp)
+target_link_libraries(nephtys-client-test PRIVATE CONAN_PKG::doctest ${nephtys_client_libraries})
+target_include_directories(nephtys-client-test PRIVATE ${nephtys_client_include_directories})
