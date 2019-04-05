@@ -1,3 +1,0 @@
-[submodule "vendor/strong_type"]
-	path = vendor/strong_type
-	url = https://github.com/doom/strong_type
