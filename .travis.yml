@@ -39,6 +39,7 @@ install:
   - cd -
 
 script:
+  #! build
   - |
     if [[ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == ON ]]; then
       mkdir cmake-build-debug
@@ -47,3 +48,9 @@ script:
       ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
       make VERBOSE=1 -j2
     fi
+
+  #! tests
+  - |
+    cd bin
+    ./nephtys-client-test --reporters=xml --out=result.xml -s || true
+    - curl https://report.ci/upload.py | python
