@@ -33,6 +33,7 @@ install:
       conan profile update settings.compiler.libcxx=libstdc++11 default
       conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
       conan remote add skypjack https://api.bintray.com/conan/skypjack/conan
+      conan remote add conan-doom_strong_types https://api.bintray.com/conan/milerius/doom_strong_types
     fi
 
   - cd -

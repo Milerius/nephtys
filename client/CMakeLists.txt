@@ -11,11 +11,10 @@ target_compile_options(nephtys_client PUBLIC
         $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:Clang>>:-O0 -g -Wall -Wextra -Wfatal-errors>
         $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Zi /FS /DEBUG /Od /MP /MDd /Oy- /W4 /permissive- /std:c++latest>
         $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2 -DNDEBUG /MP /W4 /permissive- /std:c++latest>)
-target_link_libraries(nephtys_client PRIVATE CONAN_PKG::sfml CONAN_PKG::entt CONAN_PKG::jsonformoderncpp)
+target_link_libraries(nephtys_client PRIVATE CONAN_PKG::sfml CONAN_PKG::entt CONAN_PKG::jsonformoderncpp CONAN_PKG::doom_strong_types)
 target_include_directories(nephtys_client PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${PROJECT_SOURCE_DIR}/common/include
-        ${PROJECT_SOURCE_DIR}/vendor/strong_type/include)
+        ${PROJECT_SOURCE_DIR}/common/include)
 
 ##Properties
 get_target_property(nephtys_client_libraries nephtys_client LINK_LIBRARIES)
