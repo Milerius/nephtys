@@ -1,7 +1,9 @@
 add_executable(nephtys_client)
 
 set(nephtys_client_sources
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.cpp)
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.cpp
+        $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/app_image_real_path.cpp>
+        )
 
 target_sources(nephtys_client PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 target_compile_options(nephtys_client PUBLIC
@@ -13,6 +15,7 @@ target_compile_options(nephtys_client PUBLIC
         $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2 -DNDEBUG /MP /W4 /permissive- /std:c++latest>)
 target_link_libraries(nephtys_client PRIVATE CONAN_PKG::sfml CONAN_PKG::entt CONAN_PKG::jsonformoderncpp CONAN_PKG::doom_strong_types
         $<$<CXX_COMPILER_ID:GNU>:-static>
+        $<$<CXX_COMPILER_ID:GNU>:stdc++fs>
         $<$<CXX_COMPILER_ID:Clang>:-static>)
 target_include_directories(nephtys_client PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -28,7 +31,8 @@ add_executable(nephtys-client-test)
 target_sources(nephtys-client-test PUBLIC
         ${nephtys_client_sources}
         ${CMAKE_CURRENT_SOURCE_DIR}/test/test_client.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.test.cpp)
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.test.cpp
+        $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/app_image_real_path.test.cpp>)
 target_link_libraries(nephtys-client-test PRIVATE CONAN_PKG::doctest ${nephtys_client_libraries})
 target_include_directories(nephtys-client-test PRIVATE ${nephtys_client_include_directories})
 if (NEPHTYS_COVERAGE)
@@ -37,4 +41,28 @@ if (NEPHTYS_COVERAGE)
 endif ()
 
 ##! Config file
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/assets/config/game_config.json ${nephtys_client_output_directory}/assets/config/game_config.json COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/assets/config/game_config.json
+        ${nephtys_client_output_directory}/share/assets/config/game_config.json COPYONLY)
+
+if (LINUX)
+    ##! Install
+    install(TARGETS
+            nephtys_client
+            DESTINATION bin
+            )
+
+    install(
+            FILES ${CMAKE_CURRENT_SOURCE_DIR}/assets/nephtys.desktop
+            DESTINATION share/applications/
+    )
+
+    install(
+            FILES ${CMAKE_CURRENT_SOURCE_DIR}/assets/config/game_config.json
+            DESTINATION share/assets/config/
+    )
+
+    install(
+            FILES ${CMAKE_CURRENT_SOURCE_DIR}/assets/nephtys_icon.png
+            DESTINATION share/icons/hicolor/128x128/apps
+    )
+endif ()
