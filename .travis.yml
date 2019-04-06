@@ -17,13 +17,39 @@ matrix:
         - CXX=g++-8
         - CC=gcc-8
 
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - NEPHTYS_CMAKE_DEBUG_GCC_8=ON
+        - CODE_COVERAGE=ON
+        - CXX=g++-8
+        - CC=gcc-8
+
 install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
+  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-8 100
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+  - gcov --version
+  - g++ --version
+  - cmake --version
 
   - |
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == "ON" ]; then
+      if [[ "${CODE_COVERAGE}" == "ON" ]]; then gem install coveralls-lcov ; fi
+      curl -sL https://github.com/linux-test-project/lcov/releases/download/v1.14/lcov-1.14.tar.gz | tar xz
+      sudo make -C lcov-1.14 install
+      lcov --version
       CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.0-Linux-x86_64.tar.gz"
       mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
@@ -45,12 +71,27 @@ script:
       mkdir cmake-build-debug
       cd cmake-build-debug
       conan install ../
-      ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
+      if [[ "${CODE_COVERAGE}" = "ON" ]]; then
+        ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 -DNEPHTYS_COVERAGE=ON ../
+      else
+        ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
+      fi
       make VERBOSE=1 -j2
     fi
 
   #! tests
   - |
+    parent_directory=$(dirname "$PWD")
     cd bin
     ./nephtys-client-test --reporters=xml --out=result.xml -s || true
+    if [[ "${CODE_COVERAGE}" = "ON" ]]; then
+      cd -
+      find . -print | grep -i '.*[.]gc*'
+      lcov -d . -c -o coverage.info
+      lcov -r coverage.info "/usr*" -o coverage.info
+      lcov -r coverage.info "$HOME/.conan/*" -o coverage.info
+      lcov -r coverage.info "$parent_directory/*.test.*" -o coverage.info
+      lcov -l coverage.info
+      coveralls-lcov coverage.info  # upload results
+    fi
     curl https://report.ci/upload.py | python
