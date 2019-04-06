@@ -83,6 +83,8 @@ script:
     cd bin
     ./nephtys-client-test --reporters=xml --out=result.xml -s || true
     if [[ "${CODE_COVERAGE}" = "ON" ]]; then
+      ./nephtys-client-test
+      find . -print | grep -i '.*[.]gc*'
       lcov -d . -c -o coverage.info                                      # parse coverage data
       lcov -r coverage.info "/usr*" -o coverage.info                     # remove data for system headers
       lcov -r coverage.info "$HOME/.conan/*" -o coverage.info            # remove data for conan dependancies
