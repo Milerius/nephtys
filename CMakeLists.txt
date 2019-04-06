@@ -12,12 +12,13 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 ##! Project
 
-##! Sub-Projects
-add_subdirectory(client)
-
 if (UNIX AND NOT APPLE)
     set(LINUX TRUE)
 endif ()
+
+##! Sub-Projects
+add_subdirectory(client)
+
 
 if (LINUX)
     add_subdirectory(server)
