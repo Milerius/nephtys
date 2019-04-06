@@ -28,3 +28,7 @@ target_sources(nephtys-client-test PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.test.cpp)
 target_link_libraries(nephtys-client-test PRIVATE CONAN_PKG::doctest ${nephtys_client_libraries})
 target_include_directories(nephtys-client-test PRIVATE ${nephtys_client_include_directories})
+if (NEPHTYS_COVERAGE)
+    target_compile_options(nephtys-client-test PUBLIC --coverage -fprofile-arcs -ftest-coverage)
+    target_link_options(nephtys-client-test PUBLIC --coverage -fprofile-arcs -ftest-coverage)
+endif()
