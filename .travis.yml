@@ -68,6 +68,7 @@ script:
   #! build
   - |
     if [[ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == ON ]]; then
+      source_tree_dir=$PWD
       mkdir cmake-build-debug
       cd cmake-build-debug
       conan install ../
@@ -100,5 +101,6 @@ script:
 after_success:
   - |
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == "ON" ]; then
+      cd $source_tree_dir
       ./scripts/deploy_linux.sh
     fi
