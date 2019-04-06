@@ -77,7 +77,7 @@ script:
   - |
     cd bin
     ./nephtys-client-test --reporters=xml --out=result.xml -s || true
-    if [[ "${CODE_COVERAGE}" = "ON"]] then
+    if [[ "${CODE_COVERAGE}" = "ON" ]] then
       lcov -d . -c -o coverage.info                                      # parse coverage data
       lcov -r coverage.info "/usr*" -o coverage.info                     # remove data for system headers
       lcov -l coverage.info                                              # just list a short summary of the results
