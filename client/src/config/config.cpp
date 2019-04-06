@@ -20,4 +20,23 @@ namespace nephtys::client
       game_cfg.window.width = st::width{
           json_data.at(window_json_field).at(window_size_json_field).at(window_width_json_field).get<std::uint32_t>()};
     }
+
+    void to_json(nlohmann::json &json_data, const config &game_cfg)
+    {
+      json_data[window_json_field] = nlohmann::json::object();
+      json_data[window_json_field][window_size_json_field] = nlohmann::json::object();
+      json_data[window_json_field][window_size_json_field][window_height_json_field] = game_cfg.window.height.value();
+      json_data[window_json_field][window_size_json_field][window_width_json_field] = game_cfg.window.width.value();
+      json_data[window_json_field][window_title_json_field] = game_cfg.window.title;
+    }
+
+    bool config::operator!=(const config &rhs) const
+    {
+      return !(rhs == *this);
+    }
+
+    bool config::operator==(const config &rhs) const
+    {
+      return window == rhs.window;
+    }
 }
