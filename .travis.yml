@@ -65,7 +65,12 @@ script:
       mkdir cmake-build-debug
       cd cmake-build-debug
       conan install ../
-      ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
+      if [[ "${CODE_COVERAGE}" = "ON" ]]; then
+        ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 -DNEPHTYS_COVERAGE=ON ../
+      else
+        ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
+      fi
+
       make VERBOSE=1 -j2
     fi
 
