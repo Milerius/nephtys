@@ -48,9 +48,7 @@ install:
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == "ON" ]; then
       if [[ "${CODE_COVERAGE}" == "ON" ]]; then gem install coveralls-lcov ; fi
       curl -sL https://github.com/linux-test-project/lcov/releases/download/v1.14/lcov-1.14.tar.gz | tar xz
-      cd lcov-1.14
-      sudo make install
-      cd -
+      cd lcov-1.14 && sudo make install && cd -
       lcov --version
       CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.0-Linux-x86_64.tar.gz"
       mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
