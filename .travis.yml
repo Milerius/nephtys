@@ -44,6 +44,7 @@ install:
   - gcov --version
   - g++ --version
   - cmake --version
+  - lcov --version
 
   - |
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == "ON" ]; then
@@ -85,11 +86,11 @@ script:
     if [[ "${CODE_COVERAGE}" = "ON" ]]; then
       cd -
       find . -print | grep -i '.*[.]gc*'
-      lcov -d . -c -o coverage.info                                      # parse coverage data
-      lcov -r coverage.info "/usr*" -o coverage.info                     # remove data for system headers
-      lcov -r coverage.info "$HOME/.conan/*" -o coverage.info            # remove data for conan dependancies
-      lcov -r coverage.info "$parent_directory/*.test.*" -o coverage.info  # remove data for test files
-      lcov -l coverage.info                                              # just list a short summary of the results
+      lcov -d . -c -o coverage.info
+      lcov -r coverage.info "/usr*" -o coverage.info
+      lcov -r coverage.info "$HOME/.conan/*" -o coverage.info
+      lcov -r coverage.info "$parent_directory/*.test.*" -o coverage.info
+      lcov -l coverage.info
       coveralls-lcov --repo-token=${COVERALLS_REPO_TOKEN} coverage.info  # upload results
     fi
     curl https://report.ci/upload.py | python
