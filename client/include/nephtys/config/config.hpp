@@ -10,32 +10,27 @@
 
 namespace nephtys::client
 {
-    struct config
+    struct win_cfg
     {
-        bool operator==(const config &rhs) const;
+        //! Operator
+        bool operator==(const win_cfg &rhs) const;
+        bool operator!=(const win_cfg &rhs) const;
 
-        bool operator!=(const config &rhs) const;
-
-        struct window
-        {
-            bool operator==(const window &rhs) const
-            {
-              return height == rhs.height &&
-                     width == rhs.width &&
-                     title == rhs.title;
-            }
-
-            bool operator!=(const window &rhs) const
-            {
-              return !(rhs == *this);
-            }
-
-            st::height height;
-            st::width width;
-            std::string title;
-        } window;
+        //! Data
+        st::height height;
+        st::width width;
+        std::string title;
     };
 
+    struct config
+    {
+        //! Operator
+        bool operator==(const config &rhs) const;
+        bool operator!=(const config &rhs) const;
+
+        //! Data
+        win_cfg window;
+    };
 
     void from_json(const nlohmann::json &json_data, config &game_cfg);
     void to_json(nlohmann::json &json_data, const config &game_cfg);

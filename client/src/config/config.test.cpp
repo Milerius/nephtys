@@ -14,6 +14,7 @@ namespace nephtys::client
       CHECK_NOTHROW(from_json(json_game_cfg, game_cfg));
       CHECK_EQ(game_cfg, config{{st::height{1200u}, st::width{800u}, "nephtys"}});
       CHECK_NE(game_cfg, config{{st::height{1200u}, st::width{800u}, "nephtys_fake"}});
+      CHECK_NE(game_cfg.window, config{{st::height{1200u}, st::width{800u}, "nephtys_fake"}}.window);
     }
 
     TEST_CASE ("game config to json")
