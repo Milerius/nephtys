@@ -41,6 +41,9 @@ install:
   - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-8 100
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+  - gcov --version
+  - g++ --version
+  - cmake --version
 
   - |
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == "ON" ]; then
