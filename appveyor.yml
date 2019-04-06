@@ -21,7 +21,6 @@ install:
   - conan remote add conan-doom_strong_types https://api.bintray.com/conan/milerius/doom_strong_types
 
 before_build:
-  - git submodule -q update --init
   - mkdir cmake-build-debug
   - cd cmake-build-debug
   - conan install ../

@@ -5,7 +5,6 @@ extraction:
         - python-pip
         - pkg-config
     after_prepare:    # Customizable step used by all languages.
-      - git submodule -q update --init
       - pip3 install --local cmake conan
       - pip3 install --local cmake conan --upgrade
       - ls ~/.local/bin
