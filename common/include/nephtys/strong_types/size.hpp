@@ -9,5 +9,5 @@
 namespace nephtys::st
 {
     using height = ::st::type<std::uint32_t, struct height_tag, ::st::arithmetic>;
-    using width = ::st::type<std::uint32_t, struct height_tag, ::st::arithmetic>;
+    using width = ::st::type<std::uint32_t, struct width_tag, ::st::arithmetic>;
 }
