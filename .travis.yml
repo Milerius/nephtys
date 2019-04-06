@@ -70,12 +70,17 @@ script:
       else
         ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
       fi
-
       make VERBOSE=1 -j2
-    fi
+
 
   #! tests
   - |
     cd bin
     ./nephtys-client-test --reporters=xml --out=result.xml -s || true
+    if [[ "${CODE_COVERAGE}" = "ON"]] then
+      lcov -d . -c -o coverage.info                                      # parse coverage data
+      lcov -r coverage.info "/usr*"                     -o coverage.info # remove data for system headers
+      lcov -l coverage.info                                              # just list a short summary of the results
+      coveralls-lcov --repo-token=${COVERALLS_REPO_TOKEN} coverage.info  # upload results
+    fi
     curl https://report.ci/upload.py | python
