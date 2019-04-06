@@ -10,3 +10,4 @@
 | License | ![GitHub](https://img.shields.io/github/license/milerius/nephtys.svg) |
 | Report.CI (AppVeyor) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=appveyor)](https://report.ci/status/Milerius/nephtys?branch=master&build=appveyor) |
 | Report.CI (Travis) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=travis-ci)](https://report.ci/status/Milerius/nephtys?branch=master&build=travis-ci) |
+| Coveralls | [![Coverage Status](https://coveralls.io/repos/github/Milerius/nephtys/badge.svg?branch=master)](https://coveralls.io/github/Milerius/nephtys?branch=master) |
