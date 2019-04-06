@@ -11,7 +11,9 @@ target_compile_options(nephtys_client PUBLIC
         $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:Clang>>:-O0 -g -Wall -Wextra -Wfatal-errors>
         $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Zi /FS /DEBUG /Od /MP /MDd /Oy- /W4 /permissive- /std:c++latest>
         $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2 -DNDEBUG /MP /W4 /permissive- /std:c++latest>)
-target_link_libraries(nephtys_client PRIVATE CONAN_PKG::sfml CONAN_PKG::entt CONAN_PKG::jsonformoderncpp CONAN_PKG::doom_strong_types)
+target_link_libraries(nephtys_client PRIVATE CONAN_PKG::sfml CONAN_PKG::entt CONAN_PKG::jsonformoderncpp CONAN_PKG::doom_strong_types
+        $<$<CXX_COMPILER_ID:GNU>:-static>
+        $<$<CXX_COMPILER_ID:Clang>:-static>)
 target_include_directories(nephtys_client PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${PROJECT_SOURCE_DIR}/common/include)
@@ -32,7 +34,7 @@ target_include_directories(nephtys-client-test PRIVATE ${nephtys_client_include_
 if (NEPHTYS_COVERAGE)
     target_compile_options(nephtys-client-test PUBLIC --coverage -fprofile-arcs -ftest-coverage)
     target_link_options(nephtys-client-test PUBLIC --coverage -fprofile-arcs -ftest-coverage)
-endif()
+endif ()
 
 ##! Config file
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/assets/config/game_config.json ${nephtys_client_output_directory}/assets/config/game_config.json COPYONLY)
