@@ -18,6 +18,7 @@ target_include_directories(nephtys_client PRIVATE
 
 ##Properties
 get_target_property(nephtys_client_libraries nephtys_client LINK_LIBRARIES)
+get_target_property(nephtys_client_output_directory nephtys_client RUNTIME_OUTPUT_DIRECTORY)
 get_target_property(nephtys_client_include_directories nephtys_client INCLUDE_DIRECTORIES)
 
 ##! Test
@@ -32,3 +33,6 @@ if (NEPHTYS_COVERAGE)
     target_compile_options(nephtys-client-test PUBLIC --coverage -fprofile-arcs -ftest-coverage)
     target_link_options(nephtys-client-test PUBLIC --coverage -fprofile-arcs -ftest-coverage)
 endif()
+
+##! Config file
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/assets/config/game_config.json ${nephtys_client_output_directory}/assets/config/game_config.json COPYONLY)

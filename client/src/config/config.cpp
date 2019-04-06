@@ -39,4 +39,16 @@ namespace nephtys::client
     {
       return window == rhs.window;
     }
+
+    bool win_cfg::operator==(const win_cfg &rhs) const
+    {
+      return height == rhs.height &&
+             width == rhs.width &&
+             title == rhs.title;
+    }
+
+    bool win_cfg::operator!=(const win_cfg &rhs) const
+    {
+      return !(rhs == *this);
+    }
 }
