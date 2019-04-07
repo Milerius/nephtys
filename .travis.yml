@@ -43,6 +43,12 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      addons:
+        apt:
+          packages:
+            - doxygen
+            - doxygen-gui
+            - doxygen-doc
       env:
         - NEPHTYS_BUILD_DOCUMENTATION=ON
 
