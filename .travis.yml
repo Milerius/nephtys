@@ -39,7 +39,6 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -56,8 +55,7 @@ matrix:
 install:
   - |
     if [ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]; then
-      pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
-      pip install -U sphinx
+      pip install sphinx=1.8.4
       pip install breathe
     fi
 
