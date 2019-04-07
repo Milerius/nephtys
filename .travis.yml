@@ -55,7 +55,7 @@ matrix:
 install:
   - |
     if [ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]; then
-      pip install sphinx=1.8.4
+      pip install sphinx==1.8.4
       pip install breathe
     fi
 
