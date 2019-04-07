@@ -18,8 +18,4 @@ endif ()
 
 ##! Sub-Projects
 add_subdirectory(client)
-
-
-if (LINUX)
-    add_subdirectory(server)
-endif ()
+add_subdirectory(server)

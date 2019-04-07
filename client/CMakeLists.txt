@@ -5,7 +5,7 @@ set(nephtys_client_sources
         $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/app_image_real_path.cpp>
         )
 
-target_sources(nephtys_client PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+target_sources(nephtys_client PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp ${nephtys_client_sources})
 target_compile_options(nephtys_client PUBLIC
         $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:Clang>>:-O2 -march=native -Wall -Wextra -Wfatal-errors>
         $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU>>:-O2 -march=native -Wall -Wextra -Wfatal-errors>
@@ -52,8 +52,13 @@ if (LINUX)
             )
 
     install(
-            FILES ${CMAKE_CURRENT_SOURCE_DIR}/assets/nephtys.desktop
+            FILES ${CMAKE_CURRENT_SOURCE_DIR}/assets/org.nephtys.client.desktop
             DESTINATION share/applications/
+    )
+
+    install(
+            FILES ${CMAKE_CURRENT_SOURCE_DIR}/assets/org.nephtys.client.appdata.xml
+            DESTINATION share/metainfo/
     )
 
     install(
