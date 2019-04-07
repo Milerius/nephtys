@@ -25,7 +25,8 @@ build
 # Fortran module files
 *.mod
 *.smod
-
+docs/build
+docs/doxy_output/
 # Compiled Static libraries
 *.lai
 *.la
