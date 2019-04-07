@@ -16,6 +16,7 @@ matrix:
         - NEPHTYS_CMAKE_DEBUG_GCC_8=ON
         - CXX=g++-8
         - CC=gcc-8
+        - WILL_COMPILE_CODE=ON
 
     - os: linux
       language: python
@@ -34,15 +35,40 @@ matrix:
         - CODE_COVERAGE=ON
         - CXX=g++-8
         - CC=gcc-8
+        - WILL_COMPILE_CODE=ON
+
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          packages:
+            - doxygen
+            - doxygen-gui
+            - doxygen-doc
+      env:
+        - NEPHTYS_BUILD_DOCUMENTATION=ON
+
 
 install:
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
-  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-8 100
-  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
-  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
-  - gcov --version
-  - g++ --version
-  - cmake --version
+  - |
+    if [ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]; then
+      pip install breathe
+    fi
+
+  - |
+    if [ "${WILL_COMPILE_CODE}" == "ON" ] && [ "${TRAVIS_OS_NAME}" == "linux" ]; then
+      sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
+      sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-8 100
+      DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+      mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+      gcov --version
+      g++ --version
+      cmake --version
+    fi
 
   - |
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == "ON" ]; then
@@ -60,9 +86,8 @@ install:
       conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
       conan remote add skypjack https://api.bintray.com/conan/skypjack/conan
       conan remote add conan-doom_strong_types https://api.bintray.com/conan/milerius/doom_strong_types
+      cd -
     fi
-
-  - cd -
 
 script:
   #! build
@@ -82,21 +107,23 @@ script:
 
   #! tests
   - |
-    parent_directory=$(dirname "$PWD")
-    cd bin
-    ./nephtys-client-test --reporters=xml --out=result.xml -s || true
-    if [[ "${CODE_COVERAGE}" = "ON" ]]; then
-      cd -
-      find . -print | grep -i '.*[.]gc*'
-      lcov -d . -c -o coverage.info
-      lcov -r coverage.info "/usr*" -o coverage.info
-      lcov -r coverage.info "$HOME/.conan/*" -o coverage.info
-      lcov -r coverage.info "$parent_directory/*.test.*" -o coverage.info
-      lcov -l coverage.info
-      coveralls-lcov coverage.info  # upload results
+    if [ "${WILL_COMPILE_CODE}" == "ON" ]; then
+      parent_directory=$(dirname "$PWD")
+      cd bin
+      ./nephtys-client-test --reporters=xml --out=result.xml -s || true
+      if [[ "${CODE_COVERAGE}" = "ON" ]]; then
+        cd -
+        find . -print | grep -i '.*[.]gc*'
+        lcov -d . -c -o coverage.info
+        lcov -r coverage.info "/usr*" -o coverage.info
+        lcov -r coverage.info "$HOME/.conan/*" -o coverage.info
+        lcov -r coverage.info "$parent_directory/*.test.*" -o coverage.info
+        lcov -l coverage.info
+        coveralls-lcov coverage.info  # upload results
+      fi
+      curl https://report.ci/upload.py | python
+      cd ../
     fi
-    curl https://report.ci/upload.py | python
-    cd ../
 
 after_success:
   - |
