@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=nephtys_server
+Exec=nephtys_server
+Icon=nephtys_icon
+Categories=Development;
