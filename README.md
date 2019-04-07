@@ -12,3 +12,4 @@
 | Report.CI (Travis) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=travis-ci)](https://report.ci/status/Milerius/nephtys?branch=master&build=travis-ci) |
 | Coveralls | [![Coverage Status](https://coveralls.io/repos/github/Milerius/nephtys/badge.svg?branch=master)](https://coveralls.io/github/Milerius/nephtys?branch=master) |
 | Codefactor | ![CodeFactor](https://www.codefactor.io/repository/github/milerius/nephtys/badge?style=plastic) |
+| Docs | [![Documentation Status](https://readthedocs.org/projects/nephtys/badge/?version=latest)](https://nephtys.readthedocs.io/en/latest/?badge=latest) |
