@@ -17,7 +17,8 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 from subprocess import call
-call(['doxygen', 'Doxyfile'])
+
+call(['/usr/bin/doxygen', 'Doxyfile'])
 
 # -- Project information -----------------------------------------------------
 
@@ -171,5 +172,5 @@ epub_title = project
 epub_exclude_files = ['search.html']
 
 # -- Extension configuration -------------------------------------------------
-breathe_projects = { "nephtys": "../doxy_output/xml"}
+breathe_projects = {"nephtys": "../doxy_output/xml"}
 breathe_default_project = "nephtys"
