@@ -23,6 +23,7 @@ call(['/usr/bin/doxygen', 'Doxyfile'])
 # -- Project information -----------------------------------------------------
 
 project = u'nephtys'
+# pylint: disable=W0622
 copyright = u'2019, Sztergbaum Roman'
 author = u'Sztergbaum Roman'
 
