@@ -90,6 +90,10 @@ install:
     fi
 
 script:
+  - |
+    if [ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]; then
+        ./scripts/build_doc.sh
+    fi
   #! build
   - |
     if [[ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == ON ]]; then
