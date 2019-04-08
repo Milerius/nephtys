@@ -135,6 +135,19 @@ script:
       make VERBOSE=1 -j2
     fi
 
+  - |
+    if [[ (-x $(which brew)) ]]; then
+      mkdir cmake-build-debug
+      cd cmake-build-debug
+      conan install ../
+      cmake ../
+      make VERBOSE=1 -j2
+      cd bin
+      ./nephtys-client-test --reporters=xml --out=result.xml -s || true
+      curl https://report.ci/upload.py | python
+      cd ../
+    fi
+
   #! tests
   - |
     if [ "${WILL_COMPILE_CODE}" == "ON" ]; then
