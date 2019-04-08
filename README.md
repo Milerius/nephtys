@@ -9,8 +9,8 @@
 | Issues         |  ![GitHub issues](https://img.shields.io/github/issues/milerius/nephtys.svg) |
 | License | ![GitHub](https://img.shields.io/github/license/milerius/nephtys.svg) |
 | Report.CI (AppVeyor) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=appveyor)](https://report.ci/status/Milerius/nephtys?branch=master&build=appveyor) |
-| Report.CI (Travis Linux) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=travis-ci%20linux)](https://report.ci/status/Milerius/nephtys?branch=master&build=travis-ci) |
-| Report.CI (Travis OSX) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=travis-ci%20osx)](https://report.ci/status/Milerius/nephtys?branch=master&build=travis-ci) |
+| Report.CI (Travis Linux) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=travis-ci%20linux)](https://report.ci/status/Milerius/nephtys?branch=master&build=travis-ci%20linux) |
+| Report.CI (Travis OSX) | [![badge](https://report.ci/status/Milerius/nephtys/badge.svg?branch=master&build=travis-ci%20osx)](https://report.ci/status/Milerius/nephtys?branch=master&build=travis-ci%20osx) |
 | Coveralls | [![Coverage Status](https://coveralls.io/repos/github/Milerius/nephtys/badge.svg?branch=master)](https://coveralls.io/github/Milerius/nephtys?branch=master) |
 | Codefactor | ![CodeFactor](https://www.codefactor.io/repository/github/milerius/nephtys/badge?style=plastic) |
 | Docs | [![Documentation Status](https://readthedocs.org/projects/nephtys/badge/?version=latest)](https://nephtys.readthedocs.io/en/latest/?badge=latest) |
