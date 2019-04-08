@@ -144,7 +144,7 @@ script:
       make VERBOSE=1 -j2
       cd bin
       ./nephtys-client-test --reporters=xml --out=result.xml -s || true
-      curl https://report.ci/upload.py -n "Doctest [travis-ci ${TRAVIS_OS_NAME}]" | python
+      curl "https://report.ci/upload.py --output upload.py && python upload.py -n "Doctest [travis-ci ${TRAVIS_OS_NAME}]"
       cd ../
     fi
 
@@ -165,7 +165,7 @@ script:
         lcov -l coverage.info
         coveralls-lcov coverage.info  # upload results
       fi
-      curl https://report.ci/upload.py -n "Doctest [travis-ci ${TRAVIS_OS_NAME}]" | python
+      curl "https://report.ci/upload.py --output upload.py && python upload.py -n "Doctest [travis-ci ${TRAVIS_OS_NAME}]"
       cd ../
     fi
 
