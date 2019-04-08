@@ -161,6 +161,7 @@ script:
         lcov -r coverage.info "/usr*" -o coverage.info
         lcov -r coverage.info "$HOME/.conan/*" -o coverage.info
         lcov -r coverage.info "$parent_directory/*.test.*" -o coverage.info
+        lcov -r coverage.info "$parent_directory/vendor/noesisgui/include/*" -o coverage.info
         lcov -l coverage.info
         coveralls-lcov coverage.info  # upload results
       fi
