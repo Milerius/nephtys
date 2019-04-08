@@ -22,3 +22,8 @@ extraction:
       - cd $LGTM_SRC/_lgtm_build_dir
       - conan install -g cmake ../
       - cd -
+
+
+path_classifiers:
+  library:
+    - vendor/noesisgui/include
