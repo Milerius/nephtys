@@ -19,3 +19,4 @@ endif ()
 ##! Sub-Projects
 add_subdirectory(client)
 add_subdirectory(server)
+add_subdirectory(launcher)
