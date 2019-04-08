@@ -51,8 +51,21 @@ matrix:
       env:
         - NEPHTYS_BUILD_DOCUMENTATION=ON
 
+    - os: osx
+      osx_image: xcode10.2
+
+
 
 install:
+  - |
+    if [[ (-x $(which brew)) ]]; then
+      brew update
+      brew install cmake ninja llvm
+      brew upgrade cmake
+      cmake --version
+      clang --version
+    fi
+
   - |
     if [ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]; then
       pip install sphinx==1.8.4
