@@ -16,7 +16,7 @@ target_compile_options(nephtys_server PUBLIC
 target_link_libraries(nephtys_server CONAN_PKG::asio CONAN_PKG::jsonformoderncpp
         $<$<CXX_COMPILER_ID:GNU>:-static>
         $<$<CXX_COMPILER_ID:GNU>:stdc++fs>
-        $<$<CXX_COMPILER_ID:Clang>:-static>)
+        $<$<CXX_COMPILER_ID:Clang>:>)
 
 ##! Installation
 if (LINUX)

@@ -16,7 +16,7 @@ target_compile_options(nephtys_client PUBLIC
 target_link_libraries(nephtys_client PRIVATE CONAN_PKG::sfml CONAN_PKG::entt CONAN_PKG::jsonformoderncpp CONAN_PKG::doom_strong_types
         $<$<CXX_COMPILER_ID:GNU>:-static>
         $<$<CXX_COMPILER_ID:GNU>:stdc++fs>
-        $<$<CXX_COMPILER_ID:Clang>:-static>)
+        $<$<CXX_COMPILER_ID:Clang>:>)
 target_include_directories(nephtys_client PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${PROJECT_SOURCE_DIR}/common/include)

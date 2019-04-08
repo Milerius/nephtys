@@ -51,8 +51,34 @@ matrix:
       env:
         - NEPHTYS_BUILD_DOCUMENTATION=ON
 
+    - os: osx
+      osx_image: xcode10.2
+
+
 
 install:
+  - |
+    if [[ (-x $(which brew)) ]]; then
+      brew update
+      brew install cmake ninja llvm python3
+      brew upgrade cmake
+      cmake --version
+      export PATH="/usr/local/opt/llvm/bin:$PATH"
+      export CC=clang
+      export CXX=clang++
+      export LD=ld.lld
+      export AR=llvm-ar
+      export RANLIB=llvm-ranlib
+      export LDFLAGS=-L/usr/local/opt/llvm/lib
+      export CPPFLAGS=-I/usr/local/opt/llvm/include
+      clang --version
+      clang++ --version
+      pip3 install conan
+      conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+      conan remote add skypjack https://api.bintray.com/conan/skypjack/conan
+      conan remote add conan-doom_strong_types https://api.bintray.com/conan/milerius/doom_strong_types
+    fi
+
   - |
     if [ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]; then
       pip install sphinx==1.8.4
@@ -107,6 +133,19 @@ script:
         ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
       fi
       make VERBOSE=1 -j2
+    fi
+
+  - |
+    if [[ (-x $(which brew)) ]]; then
+      mkdir cmake-build-debug
+      cd cmake-build-debug
+      conan install --build sfml ../
+      cmake ../
+      make VERBOSE=1 -j2
+      cd bin
+      ./nephtys-client-test --reporters=xml --out=result.xml -s || true
+      curl https://report.ci/upload.py | python
+      cd ../
     fi
 
   #! tests
