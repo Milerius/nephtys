@@ -60,10 +60,23 @@ install:
   - |
     if [[ (-x $(which brew)) ]]; then
       brew update
-      brew install cmake ninja llvm
+      brew install cmake ninja llvm python3
       brew upgrade cmake
       cmake --version
+      export PATH="/usr/local/opt/llvm/bin:$PATH"
+      export CC=clang
+      export CXX=clang++
+      export LD=ld.lld
+      export AR=llvm-ar
+      export RANLIB=llvm-ranlib
+      export LDFLAGS=-L/usr/local/opt/llvm/lib
+      export CPPFLAGS=-I/usr/local/opt/llvm/include
       clang --version
+      clang++ --version
+      pip3 install conan
+      conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+      conan remote add skypjack https://api.bintray.com/conan/skypjack/conan
+      conan remote add conan-doom_strong_types https://api.bintray.com/conan/milerius/doom_strong_types
     fi
 
   - |
