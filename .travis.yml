@@ -139,7 +139,7 @@ script:
     if [[ (-x $(which brew)) ]]; then
       mkdir cmake-build-debug
       cd cmake-build-debug
-      conan install ../
+      conan install --build sfml ../
       cmake ../
       make VERBOSE=1 -j2
       cd bin
