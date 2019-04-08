@@ -25,5 +25,5 @@ extraction:
 
 
 path_classifiers:
-  - library:
-      - vendor/noesisgui/include
+  library:
+    - vendor/noesisgui/include
