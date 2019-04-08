@@ -17,11 +17,6 @@ build
 *.gch
 *.pch
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
 # Fortran module files
 *.mod
 *.smod
@@ -31,7 +26,6 @@ docs/doxy_output/
 *.lai
 *.la
 *.a
-*.lib
 
 # Executables
 *.exe
