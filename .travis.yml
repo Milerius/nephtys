@@ -126,7 +126,6 @@ script:
       source_tree_dir=$PWD
       mkdir cmake-build-debug
       cd cmake-build-debug
-      conan install ../
       if [[ "${CODE_COVERAGE}" = "ON" ]]; then
         ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 -DNEPHTYS_COVERAGE=ON ../
       else

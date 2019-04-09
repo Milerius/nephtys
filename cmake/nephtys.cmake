@@ -29,11 +29,17 @@ endmacro()
 macro(exec_conan)
     if (NOT EXISTS conanbuildinfo.cmake)
         message("Conan need to be executed")
+        message("Conan installing remote ...")
+
+        execute_process(COMMAND conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan)
+        execute_process(COMMAND conan remote add skypjack https://api.bintray.com/conan/skypjack/conan)
+        execute_process(COMMAND conan remote add conan-doom_strong_types https://api.bintray.com/conan/milerius/doom_strong_types)
+
         execute_process(COMMAND conan install ../
                 RESULT_VARIABLE CMD_ERROR
                 OUTPUT_FILE CMD_OUTPUT)
-        MESSAGE( STATUS "CMD_ERROR:" ${CMD_ERROR})
-        MESSAGE( STATUS "CMD_OUTPUT:" ${CMD_OUTPUT})
+        MESSAGE(STATUS "CMD_ERROR:" ${CMD_ERROR})
+        MESSAGE(STATUS "CMD_OUTPUT:" ${CMD_OUTPUT})
     else ()
         message("Conan doesn't need to be executed")
     endif ()

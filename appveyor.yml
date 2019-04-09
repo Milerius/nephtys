@@ -23,7 +23,6 @@ install:
 before_build:
   - mkdir cmake-build-debug
   - cd cmake-build-debug
-  - conan install ../
   - cmake ../ -G "%GENERATOR%" -DCMAKE_IGNORE_PATH="C:/Program Files/Git/usr/bin"
 
 build_script:
