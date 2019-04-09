@@ -61,9 +61,10 @@ endif ()
 
 ##! Test
 add_executable(nephtys-client-test)
-target_sources(nephtys-client-test PRIVATE
+target_sources(nephtys-client-test PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/test/test_client.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.test.cpp
+        $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/app_image_real_path.test.cpp>
         )
 target_link_libraries(nephtys-client-test PRIVATE CONAN_PKG::doctest PRIVATE nephtys_client_shared_deps)
 
