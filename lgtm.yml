@@ -5,6 +5,7 @@ extraction:
         - python-pip
         - pkg-config
         - libfuse-dev
+        - kmod
     after_prepare:    # Customizable step used by all languages.
       - modprobe fuse
       - pip3 install --local cmake conan
