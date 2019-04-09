@@ -130,7 +130,7 @@ script:
       if [[ "${CODE_COVERAGE}" = "ON" ]]; then
         ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 -DNEPHTYS_COVERAGE=ON ../
       else
-        ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DCMAKE_C_COMPILER=gcc-8 ../
+        ${DEPS_DIR}/cmake/bin/cmake -DCMAKE_CXX_COMPILER=g++-8 -DAUTO_BUILD_APPIMAGE=ON -DCMAKE_C_COMPILER=gcc-8 ../
       fi
       make VERBOSE=1 -j2
     fi

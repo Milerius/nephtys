@@ -3,8 +3,9 @@
 bin
 *.d
 *.vscode
-cmake-build-debug
-cmake-build-release
+cmake-build-*
+deploy_linux/
+tools/
 build
 
 # Compiled Object files

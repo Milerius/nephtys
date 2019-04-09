@@ -16,9 +16,7 @@ function init() {
 function deploy_client() {
     cd client
     make nephtys_client -j2
-    make install DESTDIR=AppDir
-    linuxdeploy-x86_64.AppImage --appdir AppDir --output appimage
-    cp ./*.AppImage ${root_dir}/deploy_linux/nephtys_client.AppImage
+    cp ./bin/*.AppImage ${root_dir}/deploy_linux/nephtys_client.AppImage
     cd ../
 }
 

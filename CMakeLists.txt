@@ -8,12 +8,19 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 17)
 project(nepthys)
 
+##! CMake extras
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+include(nephtys)
+init_nephtys()
+
+##! Conan
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
-##! Project
 
-if (UNIX AND NOT APPLE)
-    set(LINUX TRUE)
+##! CMake Options
+option(USE_ASAN "Use address sanitizer" OFF)
+if (LINUX)
+    option(AUTO_BUILD_APPIMAGE "Enable it to autobuild appimage" OFF)
 endif ()
 
 ##! Sub-Projects
