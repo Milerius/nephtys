@@ -19,6 +19,9 @@ conan_basic_setup(TARGETS)
 
 ##! CMake Options
 option(USE_ASAN "Use address sanitizer" OFF)
+if (LINUX)
+    option(AUTO_BUILD_APPIMAGE "Enable it to autobuild appimage" OFF)
+endif ()
 
 ##! Sub-Projects
 add_subdirectory(client)

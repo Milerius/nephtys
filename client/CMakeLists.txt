@@ -50,12 +50,14 @@ if (LINUX)
             ${nephtys_client_runtime_directory}/AppDir/usr/share/metainfo/org.nephtys.client.appdata.xml COPYONLY)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/data/linux/nephtys_icon.png
             ${nephtys_client_runtime_directory}/AppDir/usr/share/icons/hicolor/128x128/nephtys_icon.png COPYONLY)
-    add_custom_command(TARGET nephtys_client
-            POST_BUILD COMMAND
-            bash -c
-            "${PROJECT_SOURCE_DIR}/tools/linux/linuxdeploy-x86_64.AppImage --appdir ${nephtys_client_runtime_directory}/AppDir --output appimage"
-            $<TARGET_FILE:nephtys_client>
-            WORKING_DIRECTORY ${nephtys_client_runtime_directory})
+    if (AUTO_BUILD_APPIMAGE)
+        add_custom_command(TARGET nephtys_client
+                POST_BUILD COMMAND
+                bash -c
+                "${PROJECT_SOURCE_DIR}/tools/linux/linuxdeploy-x86_64.AppImage --appdir ${nephtys_client_runtime_directory}/AppDir --output appimage"
+                $<TARGET_FILE:nephtys_client>
+                WORKING_DIRECTORY ${nephtys_client_runtime_directory})
+    endif ()
 endif ()
 ########################################################################
 
