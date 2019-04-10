@@ -162,7 +162,7 @@ after_success:
 
 deploy:
   provider: bintray
-  file: "scripts/bintray.linux.json"
+  file: "$TRAVIS_BUILD_DIR/scripts/bintray.linux.json"
   user: "milerius"
   key:
     secure: Y+7FfEAXA8YFS2jT5nU1UZN9AM1AzQ8g56STrMvEP3NEwMApo7TGjhj5B7dej4UsSyw2kOfe+gYcPbtKPl84KG/p8Oq9SqB2p56VaEuicwJ9ZGJCtlQ68CFOLfzZp80M38ddm/vguI7C8lGJikx1OPAqzgSWdLspmM+RAAg5dhBc6b1mti3GsX+xZzcgKpC5HfTMhgJsfHeTKi69rT7YyMfIY0vVH+OtvTCZDtIX09NS2LAFb34iBQC41jk0BBy3ux0OkFQGCiZU3qMcfWafNwPZpoijX1k8ymcBhTC/AMd/AOX9h33INiWRvHmbcWeFKrmzY86wgt9JhuCSMcA9spvYJYF7TAUoTZlUE9x85c/CG74gpuy1i4ldLQN7z/jQNipABZya7yUEzRpR/fo/fU8saiLr3z6AE0JxBBLic4OQ5H5onlLVQ/jkmWD6KIjdSJ4ud5SH1nYie3vMNDxRqg/KaddFPcVeFozhkjgdwT5gv/0MvUDEdGIL29FaS2ds5DKsoBj77IVexl8gaB3MZ0KJBqHiBfFdyUIrvtzCgXiSthCz9W69l6SfyhDaiccbiTB9PDcPAo1dceuDveL89WZnGhwThWrlu+uYEBxdNE4B3CNowqia1crA/cuLXIKtVeyYQaRapor6MhO+APO4QOBZWc7WhC1dA6W81GFohHI=
