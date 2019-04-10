@@ -26,7 +26,7 @@
   },
   "files": [
     {
-      "includePattern": "deploy_linux/.*",
+      "includePattern": "./deploy_linux/.*",
       "uploadPattern": "gems/$1",
       "matrixParams": {
         "override": 1
