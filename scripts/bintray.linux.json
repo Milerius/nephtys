@@ -1,7 +1,7 @@
 {
   "package": {
-    "name": "nephtys-linux-binaries",
-    "repo": "nephtys-linux",
+    "name": "nephtys-linux-0.0.1",
+    "repo": "nephtys-release",
     "subject": "milerius",
     "desc": "nephtys linux binaries",
     "website_url": "https://github.com/Milerius/nephtys",
@@ -26,7 +26,7 @@
   },
   "files": [
     {
-      "includePattern": "deploy_linux/*.AppImage",
+      "includePattern": "deploy_linux/.*",
       "uploadPattern": "gems/$1",
       "matrixParams": {
         "override": 1
