@@ -17,7 +17,6 @@ matrix:
         - CXX=g++-8
         - CC=gcc-8
         - WILL_COMPILE_CODE=ON
-
     - os: linux
       language: python
       cache: pip
@@ -36,7 +35,6 @@ matrix:
         - CXX=g++-8
         - CC=gcc-8
         - WILL_COMPILE_CODE=ON
-
     - os: linux
       language: python
       python: 3.7
@@ -50,12 +48,8 @@ matrix:
             - doxygen-doc
       env:
         - NEPHTYS_BUILD_DOCUMENTATION=ON
-
     - os: osx
       osx_image: xcode10.2
-
-
-
 install:
   - |
     if [[ (-x $(which brew)) ]]; then
@@ -78,13 +72,11 @@ install:
       conan remote add skypjack https://api.bintray.com/conan/skypjack/conan
       conan remote add conan-doom_strong_types https://api.bintray.com/conan/milerius/doom_strong_types
     fi
-
   - |
     if [ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]; then
       pip install sphinx==1.8.4
       pip install breathe
     fi
-
   - |
     if [ "${WILL_COMPILE_CODE}" == "ON" ] && [ "${TRAVIS_OS_NAME}" == "linux" ]; then
       sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
@@ -95,7 +87,6 @@ install:
       g++ --version
       cmake --version
     fi
-
   - |
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == "ON" ]; then
       if [[ "${CODE_COVERAGE}" == "ON" ]]; then gem install coveralls-lcov ; fi
@@ -114,13 +105,11 @@ install:
       conan remote add conan-doom_strong_types https://api.bintray.com/conan/milerius/doom_strong_types
       cd -
     fi
-
 script:
   - |
     if [ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]; then
         ./scripts/build_doc.sh
     fi
-  #! build
   - |
     if [[ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == ON ]]; then
       source_tree_dir=$PWD
@@ -133,7 +122,6 @@ script:
       fi
       make VERBOSE=1 -j2
     fi
-
   - |
     if [[ (-x $(which brew)) ]]; then
       mkdir cmake-build-debug
@@ -146,8 +134,6 @@ script:
       curl https://report.ci/upload.py --output upload.py && python upload.py -n "Doctest [travis-ci ${TRAVIS_OS_NAME}]"
       cd ../
     fi
-
-  #! tests
   - |
     if [ "${WILL_COMPILE_CODE}" == "ON" ]; then
       parent_directory=$(dirname "$PWD")
@@ -167,10 +153,20 @@ script:
       curl https://report.ci/upload.py --output upload.py && python upload.py -n "Doctest [travis-ci ${TRAVIS_OS_NAME}]"
       cd ../
     fi
-
 after_success:
-  - |
+  - |-
     if [ "${TRAVIS_OS_NAME}" == "linux" ] && [ "${NEPHTYS_CMAKE_DEBUG_GCC_8}" == "ON" ]; then
       cd $source_tree_dir
       ./scripts/deploy_linux.sh
     fi
+
+deploy:
+  provider: bintray
+  file: "$TRAVIS_BUILD_DIR/scripts/bintray.linux.json"
+  user: "milerius"
+  key:
+    secure: Y+7FfEAXA8YFS2jT5nU1UZN9AM1AzQ8g56STrMvEP3NEwMApo7TGjhj5B7dej4UsSyw2kOfe+gYcPbtKPl84KG/p8Oq9SqB2p56VaEuicwJ9ZGJCtlQ68CFOLfzZp80M38ddm/vguI7C8lGJikx1OPAqzgSWdLspmM+RAAg5dhBc6b1mti3GsX+xZzcgKpC5HfTMhgJsfHeTKi69rT7YyMfIY0vVH+OtvTCZDtIX09NS2LAFb34iBQC41jk0BBy3ux0OkFQGCiZU3qMcfWafNwPZpoijX1k8ymcBhTC/AMd/AOX9h33INiWRvHmbcWeFKrmzY86wgt9JhuCSMcA9spvYJYF7TAUoTZlUE9x85c/CG74gpuy1i4ldLQN7z/jQNipABZya7yUEzRpR/fo/fU8saiLr3z6AE0JxBBLic4OQ5H5onlLVQ/jkmWD6KIjdSJ4ud5SH1nYie3vMNDxRqg/KaddFPcVeFozhkjgdwT5gv/0MvUDEdGIL29FaS2ds5DKsoBj77IVexl8gaB3MZ0KJBqHiBfFdyUIrvtzCgXiSthCz9W69l6SfyhDaiccbiTB9PDcPAo1dceuDveL89WZnGhwThWrlu+uYEBxdNE4B3CNowqia1crA/cuLXIKtVeyYQaRapor6MhO+APO4QOBZWc7WhC1dA6W81GFohHI=
+  on:
+    branch: master
+    condition: $NEPHTYS_CMAKE_DEBUG_GCC_8 = ON
+  skip_cleanup: true # to upload artifacts created during the build
