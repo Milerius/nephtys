@@ -4,6 +4,7 @@
 
 #include <doctest.h>
 #include <nephtys/client/config/config.hpp>
+#include <fstream>
 
 namespace nephtys::client
 {
@@ -48,8 +49,36 @@ namespace nephtys::client
                             REQUIRE_EQ(load_configuration(std::filesystem::current_path() / "assets/config"), config{});
                             REQUIRE(std::filesystem::exists(
                             std::filesystem::current_path() / "assets/config/nephtys_client.config.json"));
-                    std::filesystem::remove_all(std::filesystem::current_path() / "assets");
                 }
+                        AND_THEN("We clear the directory that we create for this test") {
+                    std::filesystem::remove_all(std::filesystem::current_path() / "assets");
+                            REQUIRE_FALSE(std::filesystem::exists(std::filesystem::current_path() / "assets"));
+                }
+            }
+        }
+
+                GIVEN ("a configuration exist in the given path") {
+            auto path = std::filesystem::current_path() / "assets/config";
+                    THEN("we create the configuration and the directories") {
+
+                auto json_game_cfg = R"({"window":{"size":{"height":1200,"width":800},"title":"nephtys", "fullscreen": false}})"_json;
+                std::filesystem::create_directories(path);
+                        REQUIRE(std::filesystem::exists(path));
+                std::ofstream ofs(path / "nephtys_client.config.json");
+                        REQUIRE(ofs.is_open());
+                ofs << json_game_cfg;
+                        REQUIRE(std::filesystem::exists(path / "nephtys_client.config.json"));
+            }
+                    AND_WHEN("We load the configuration from this fresh directories") {
+                        THEN("We got this config") {
+                    config game_cfg{{st::height{1200u}, st::width{800u}, "nephtys", false}};
+                            REQUIRE_EQ(load_configuration(std::move(path)), game_cfg);
+                }
+                        AND_THEN("We clear the directory that we create for this test") {
+                    std::filesystem::remove_all(std::filesystem::current_path() / "assets");
+                            REQUIRE_FALSE(std::filesystem::exists(std::filesystem::current_path() / "assets"));
+                }
+
             }
         }
     }
