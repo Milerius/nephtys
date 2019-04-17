@@ -1,0 +1,260 @@
+matrix:
+  include:
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env: [CXX=g++-8, CC=gcc-8, WILL_COMPILE_CODE=ON, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=gcc, PIP=pip]
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env: [CODE_COVERAGE=ON,
+            CXX=g++-8, CC=gcc-8, WILL_COMPILE_CODE=ON,
+            COVERAGE_TOOL=gcov-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=gcc, PIP=pip]
+
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages: [g++-8, jq]
+      env: [CXX=g++-8,
+            CC=gcc-8,
+            WILL_COMPILE_CODE=ON,
+            CONAN_COMPILER_VERSION=8,
+            BUILD_TYPE=Release,
+            DEFAULT_COMPILER=gcc,
+            DEPLOY=ON, PIP=pip]
+
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env: [CXX=g++-8,
+            CC=gcc-8,
+            WILL_COMPILE_CODE=ON,
+            CONAN_COMPILER_VERSION=8,
+            BUILD_TYPE=Debug,
+            DEFAULT_COMPILER=gcc,
+            ASAN=ON, PIP=pip]
+
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages: [g++-8]
+      env: [CXX=g++-8,
+            CC=gcc-8,
+            WILL_COMPILE_CODE=ON,
+            CONAN_COMPILER_VERSION=8,
+            BUILD_TYPE=Debug,
+            DEFAULT_COMPILER=gcc,
+            TSAN=ON, PIP=pip]
+
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages: [g++-8, binutils]
+      env: [CXX=g++-8,
+            CC=gcc-8,
+            WILL_COMPILE_CODE=ON,
+            CONAN_COMPILER_VERSION=8,
+            BUILD_TYPE=Debug,
+            DEFAULT_COMPILER=gcc,
+            UBSAN=ON, PIP=pip]
+
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages: [g++-8, ninja-build]
+      env: [CXX=g++-8,
+            CC=gcc-8,
+            WILL_COMPILE_CODE=ON,
+            CONAN_COMPILER_VERSION=8,
+            BUILD_TYPE=Debug,
+            DEFAULT_COMPILER=gcc,
+            NINJA=ON, PIP=pip]
+
+    - os: linux
+      language: python
+      cache: pip
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages: [g++-8, ninja-build]
+      env: [CXX=g++-8,
+            CC=gcc-8,
+            WILL_COMPILE_CODE=ON,
+            CONAN_COMPILER_VERSION=8,
+            BUILD_TYPE=Release,
+            DEFAULT_COMPILER=gcc,
+            NINJA=ON, PIP=pip]
+
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          packages: [doxygen, doxygen-gui, doxygen-doc]
+      env: [NEPHTYS_BUILD_DOCUMENTATION=ON, PIP=pip]
+
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-8 main
+            - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages: [clang-8, libstdc++-8-dev]
+      env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Release, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, DEPLOY=ON, PIP=pip]
+
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-8 main
+            - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages: [clang-8, libstdc++-8-dev]
+      env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, PIP=pip]
+
+    - os: osx
+      osx_image: xcode10.2
+      env: [BUILD_TYPE=Release,
+            CLANG_VERSION=clang-8,
+            CC=clang,
+            CXX=clang++,
+            LD=ld.lld,
+            AR=llvm-ar,
+            RANLIB=llvm-ranlib,
+            LDFLAGS=-L/usr/local/opt/llvm/lib,
+            CPPFLAGS=-I/usr/local/opt/llvm/include,
+            PIP=pip3,
+            WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang, DEPLOY=ON]
+      addons:
+        homebrew:
+          packages: [cmake,ninja,llvm,python3, jq]
+          update: true
+
+    - os: osx
+      osx_image: xcode10.2
+      env: [BUILD_TYPE=Debug,
+            CLANG_VERSION=clang-8,
+            CC=clang,
+            CXX=clang++,
+            LD=ld.lld,
+            AR=llvm-ar,
+            RANLIB=llvm-ranlib,
+            LDFLAGS=-L/usr/local/opt/llvm/lib,
+            CPPFLAGS=-I/usr/local/opt/llvm/include,
+            PIP=pip3,
+            WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang]
+      addons:
+        homebrew:
+          packages: [cmake,ninja,llvm,python3]
+          update: true
+install:
+  - |
+    source ${TRAVIS_BUILD_DIR}/scripts/travis_install.sh
+
+script:
+  - |
+    source ${TRAVIS_BUILD_DIR}/scripts/travis_build.sh
+
+before_deploy:
+  - |
+    cd ${TRAVIS_BUILD_DIR}
+    cat scripts/bintray.json
+    if [ "${BUILD_TYPE}" == "Release" ] && [ -n $DEPLOY ]; then
+      jq --arg PLATFORM "${TRAVIS_OS_NAME}" '.package.name = "nephtys-" + $PLATFORM' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json
+      if [ "${TRAVIS_OS_NAME}" == "linux" ]; then ./scripts/deploy_linux.sh; fi
+      if [ "${TRAVIS_OS_NAME}" == "osx" ]; then ./scripts/deploy_osx.sh; fi
+      export VERSION=$(tail -n 1 VERSION.md)
+      jq --arg VERSION "$VERSION" '.version.name = $VERSION' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json
+      if [ "${TRAVIS_OS_NAME}" == "linux" ]; then jq --arg VERSION "$VERSION" '.version.desc = "nephtys linux binaries version: " + $VERSION' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json; fi
+      if [ "${TRAVIS_OS_NAME}" == "osx" ]; then jq --arg VERSION "$VERSION" '.version.desc = "nephtys osx binaries version: " + $VERSION' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json; fi
+      if [ "${TRAVIS_OS_NAME}" == "linux" ]; then jq --arg DIRECTORY "deploy_linux/(.*)" '.files[].includePattern = $DIRECTORY' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json; fi
+      if [ "${TRAVIS_OS_NAME}" == "osx" ]; then jq --arg DIRECTORY "deploy_osx/(.*)" '.files[].includePattern = $DIRECTORY' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json; fi
+
+      jq --arg DATE $(date +"%Y-%m-%d") '.version.released = $DATE' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json
+      jq --arg VERSION "$VERSION" '.files[].uploadPattern = $VERSION + "/$1"' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json
+      jq --arg VERSION "$VERSION" --arg COMPILER "${DEFAULT_COMPILER}" '.files[].uploadPattern = $VERSION + "/" + $COMPILER + "/$1"' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json
+      cat scripts/bintray.json
+    fi
+
+deploy:
+  provider: bintray
+  file: "$TRAVIS_BUILD_DIR/scripts/bintray.json"
+  user: "milerius"
+  key:
+    secure: Y+7FfEAXA8YFS2jT5nU1UZN9AM1AzQ8g56STrMvEP3NEwMApo7TGjhj5B7dej4UsSyw2kOfe+gYcPbtKPl84KG/p8Oq9SqB2p56VaEuicwJ9ZGJCtlQ68CFOLfzZp80M38ddm/vguI7C8lGJikx1OPAqzgSWdLspmM+RAAg5dhBc6b1mti3GsX+xZzcgKpC5HfTMhgJsfHeTKi69rT7YyMfIY0vVH+OtvTCZDtIX09NS2LAFb34iBQC41jk0BBy3ux0OkFQGCiZU3qMcfWafNwPZpoijX1k8ymcBhTC/AMd/AOX9h33INiWRvHmbcWeFKrmzY86wgt9JhuCSMcA9spvYJYF7TAUoTZlUE9x85c/CG74gpuy1i4ldLQN7z/jQNipABZya7yUEzRpR/fo/fU8saiLr3z6AE0JxBBLic4OQ5H5onlLVQ/jkmWD6KIjdSJ4ud5SH1nYie3vMNDxRqg/KaddFPcVeFozhkjgdwT5gv/0MvUDEdGIL29FaS2ds5DKsoBj77IVexl8gaB3MZ0KJBqHiBfFdyUIrvtzCgXiSthCz9W69l6SfyhDaiccbiTB9PDcPAo1dceuDveL89WZnGhwThWrlu+uYEBxdNE4B3CNowqia1crA/cuLXIKtVeyYQaRapor6MhO+APO4QOBZWc7WhC1dA6W81GFohHI=
+  on:
+    branch: master
+    condition: $DEPLOY = ON
+  skip_cleanup: true # to upload artifacts created during the build

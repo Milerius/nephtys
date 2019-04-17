@@ -1,0 +1,9 @@
+#pragma once
+
+namespace nephtys
+{
+    constexpr const char *version() noexcept
+    {
+      return "@PROJECT_VERSION@";
+    }
+}

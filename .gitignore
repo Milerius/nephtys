@@ -1,0 +1,36 @@
+# Prerequisites
+.DS_Store
+.bake_cache
+bin
+*.d
+*.vscode
+cmake-build-*
+deploy_linux/
+tools/
+build
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+.idea/
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Fortran module files
+*.mod
+*.smod
+docs/build
+docs/doxy_output/
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Executables
+*.exe
+*.out
+*.app

@@ -1,0 +1,13 @@
+[requires]
+sfml/2.5.1@bincrafters/stable
+entt/3.x.y-WIP@skypjack/stable
+asio/1.13.0@bincrafters/stable
+jsonformoderncpp/3.6.1@vthiery/stable
+doctest/2.3.1@bincrafters/stable
+doom_strong_types/1.0.0@bintray/stable
+
+[options]
+fmt:header_only=True
+
+[generators]
+cmake
