@@ -6,7 +6,7 @@ function build_doc() {
     cd -
 }
 
-doctest_upload_name="Doctest [travis-ci ${TRAVIS_OS_NAME}-${CC}-${BUILD_TYPE}]"
+doctest_upload_name="Doctest [travis-ci ${TRAVIS_OS_NAME}-${CC}-${BUILD_TYPE}"
 if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then doctest_upload_name="Doctest [travis-ci ${TRAVIS_OS_NAME}-${CLANG_VERSION}-${BUILD_TYPE}"; fi
 
 function build() {
@@ -64,6 +64,7 @@ function run_coverage() {
 
 function upload_test() {
     cd ${TRAVIS_BUILD_DIR}/cmake-build-${BUILD_TYPE}/bin
+    doctest_upload_name+=']'
     curl https://report.ci/upload.py --output upload.py && python upload.py -n "${doctest_upload_name}"
 }
 
