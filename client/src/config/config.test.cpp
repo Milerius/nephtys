@@ -60,7 +60,6 @@ namespace nephtys::client
                 GIVEN ("a configuration exist in the given path") {
             auto path = std::filesystem::current_path() / "assets/config";
                     THEN("we create the configuration and the directories") {
-
                 auto json_game_cfg = R"({"window":{"size":{"height":1200,"width":800},"title":"nephtys", "fullscreen": false}})"_json;
                 std::filesystem::create_directories(path);
                         REQUIRE(std::filesystem::exists(path));
