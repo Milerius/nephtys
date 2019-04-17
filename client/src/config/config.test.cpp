@@ -78,7 +78,6 @@ namespace nephtys::client
                     std::filesystem::remove_all(std::filesystem::current_path() / "assets");
                             REQUIRE_FALSE(std::filesystem::exists(std::filesystem::current_path() / "assets"));
                 }
-
             }
         }
     }
