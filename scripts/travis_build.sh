@@ -59,7 +59,12 @@ function run_coverage() {
      lcov -r coverage.info "${TRAVIS_BUILD_DIR}/vendor/noesisgui/include/*" -o coverage.info
      lcov -r coverage.info "${TRAVIS_BUILD_DIR}/vendor/loguru/*" -o coverage.info
      lcov -l coverage.info
-     coveralls-lcov coverage.info
+      if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+            CODECOV_TOKEN="aeb91d0a-b56c-48ae-b728-123dcf850a34"
+            bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
+      else
+           coveralls-lcov coverage.info
+      fi
 }
 
 function upload_test() {

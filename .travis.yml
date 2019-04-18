@@ -219,6 +219,24 @@ matrix:
         homebrew:
           packages: [cmake,ninja,llvm,python3]
           update: true
+
+    - os: osx
+      osx_image: xcode10.2
+      env: [BUILD_TYPE=Debug,
+            CLANG_VERSION=clang-8,
+            CC=clang,
+            CXX=clang++,
+            LD=ld.lld,
+            AR=llvm-ar,
+            RANLIB=llvm-ranlib,
+            LDFLAGS=-L/usr/local/opt/llvm/lib,
+            CPPFLAGS=-I/usr/local/opt/llvm/include,
+            PIP=pip3,
+            WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang, CODE_COVERAGE=ON]
+      addons:
+        homebrew:
+          packages: [cmake,ninja,llvm,python3]
+          update: true
 install:
   - |
     source ${TRAVIS_BUILD_DIR}/scripts/travis_install.sh
