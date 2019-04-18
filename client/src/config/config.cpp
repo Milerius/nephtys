@@ -85,7 +85,11 @@ namespace nephtys::client
             config_json_data = loaded_config;
             DVLOG_F(loguru::Verbosity_INFO, "default game config: [%s]", config_json_data.dump().c_str());
             ofs << config_json_data;
-            ofs.close();
+        } else {
+            std::ifstream ifs(fullpath);
+            DCHECK_F(ifs.is_open(), "Failed to open: [%s]", fullpath.string().c_str());
+            ifs >> config_json_data;
+            loaded_config = config_json_data;
         }
         return loaded_config;
     }
