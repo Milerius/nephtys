@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <filesystem>
 #include <string>
 #include <nlohmann/json.hpp>
 #include <nephtys/strong_types/size.hpp>
@@ -60,8 +59,6 @@ namespace nephtys::client
 
         win_cfg window; //!< window data information
     };
-
-    config load_configuration(std::filesystem::path &&config_path) noexcept;
 
     void from_json(const nlohmann::json &json_data, config &game_cfg);
 

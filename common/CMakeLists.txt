@@ -1,3 +1,11 @@
+add_library(nephtys-common INTERFACE)
+target_include_directories(nephtys-common INTERFACE include)
+target_link_libraries(nephtys-common INTERFACE
+        $<$<PLATFORM_ID:Linux>:stdc++fs>
+        $<$<PLATFORM_ID:Darwin>:c++fs>)
+add_library(nephtys::common ALIAS nephtys-common)
+
+
 add_executable(nephtys-common-test)
 target_sources(nephtys-common-test PRIVATE src/version.test.cpp test/test.common.cpp)
 target_link_libraries(nephtys-common-test PRIVATE CONAN_PKG::doctest nephtys::default_settings)

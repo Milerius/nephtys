@@ -9,17 +9,15 @@ target_link_libraries(nephtys_client_shared_deps INTERFACE
         CONAN_PKG::doom_strong_types
         nephtys::loguru
         nephtys::default_settings
-        $<$<CXX_COMPILER_ID:GNU>:-static-libstdc++>
-        $<$<PLATFORM_ID:Linux>:stdc++fs>
-        $<$<PLATFORM_ID:Darwin>:c++fs>)
+        nephtys::common
+        $<$<CXX_COMPILER_ID:GNU>:-static-libstdc++>)
 
 target_sources(nephtys_client_shared_deps INTERFACE
         ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.cpp
         $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/app_image_real_path.cpp>)
 
 target_include_directories(nephtys_client_shared_deps INTERFACE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${PROJECT_SOURCE_DIR}/common/include)
+        ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 target_enable_asan(nephtys_client_shared_deps)
