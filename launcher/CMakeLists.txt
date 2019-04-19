@@ -9,14 +9,13 @@ target_link_libraries(nephtys_launcher
         PRIVATE CONAN_PKG::sfml
         PUBLIC
         nephtys::default_settings
+        nephtys::common
         $<$<CXX_COMPILER_ID:GNU>:-static-libstdc++>
-        $<$<PLATFORM_ID:Linux>:stdc++fs>
         PRIVATE
         nephtys::noesis)
 
 target_include_directories(nephtys_launcher PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${PROJECT_SOURCE_DIR}/common/include
         ${PROJECT_SOURCE_DIR}/vendor/noesisgui/include)
 
 if (APPLE)

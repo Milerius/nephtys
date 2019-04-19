@@ -10,8 +10,8 @@ target_link_libraries(nephtys_server
         CONAN_PKG::jsonformoderncpp
         PUBLIC
         nephtys::default_settings
+        nephtys::common
         $<$<CXX_COMPILER_ID:GNU>:-static-libstdc++>
-        $<$<PLATFORM_ID:Linux>:stdc++fs>
         )
 
 if (LINUX)

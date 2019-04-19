@@ -3,8 +3,8 @@
 //
 
 #include <doctest.h>
+#include <nephtys/utils/config.hpp>
 #include <nephtys/client/config/config.hpp>
-#include <fstream>
 
 namespace nephtys::client
 {
@@ -33,11 +33,12 @@ namespace nephtys::client
                     AND_WHEN("we load the configuration from a root directory") {
                         THEN("we got a default configuration") {
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
-                            REQUIRE_EQ(load_configuration("/toto"), config{});
+                            REQUIRE_EQ(utils::load_configuration<client::config>("/toto", "nephtys_client.config.json"),
+                                       config{});
                             REQUIRE_FALSE(std::filesystem::exists("/toto"));
 
 #else
-                    auto res = load_configuration(std::filesystem::path("G:\\toto"));
+                    auto res = utils::load_configuration<client::config>(std::filesystem::path("G:\\toto"), "nephtys_client.config.json");
                     REQUIRE_EQ(res, config{});
                     auto path_exist = std::filesystem::exists("G:\\toto");
                     REQUIRE_FALSE(path_exist);
@@ -46,7 +47,9 @@ namespace nephtys::client
             }
                     AND_WHEN ("we load the configuration from a non root directory") {
                         THEN("we create a default configuration in the given path and we got a default configuration") {
-                            REQUIRE_EQ(load_configuration(std::filesystem::current_path() / "assets/config"), config{});
+                            REQUIRE_EQ(
+                            utils::load_configuration<client::config>(std::filesystem::current_path() / "assets/config",
+                                                                      "nephtys_client.config.json"), config{});
                             REQUIRE(std::filesystem::exists(
                             std::filesystem::current_path() / "assets/config/nephtys_client.config.json"));
                 }
@@ -71,7 +74,9 @@ namespace nephtys::client
                     AND_WHEN("We load the configuration from this fresh directories") {
                         THEN("We got this config") {
                     config game_cfg{{st::height{1200u}, st::width{800u}, "nephtys", false}};
-                            REQUIRE_EQ(load_configuration(std::move(path)), game_cfg);
+                            REQUIRE_EQ(
+                            utils::load_configuration<client::config>(std::move(path), "nephtys_client.config.json"),
+                            game_cfg);
                 }
                         AND_THEN("We clear the directory that we create for this test") {
                     std::filesystem::remove_all(std::filesystem::current_path() / "assets");
