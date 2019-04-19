@@ -14,7 +14,7 @@ namespace nephtys::utils
     namespace details
     {
         template<typename TConfig>
-        TConfig create_configuration(std::filesystem::path &&config_path,
+        TConfig create_configuration(const std::filesystem::path &config_path,
                                      const std::filesystem::path &full_path) noexcept
         {
             TConfig config_to_export{};
@@ -58,8 +58,7 @@ namespace nephtys::utils
         const auto &full_path = config_path / std::move(filename);
         DVLOG_F(loguru::Verbosity_INFO, "path to nephtys configuration -> %s", full_path.string().c_str());
         if (!std::filesystem::exists(config_path)) {
-            return details::create_configuration<TConfig>(std::forward<std::filesystem::path>(config_path),
-                                                          full_path);
+            return details::create_configuration<TConfig>(config_path, full_path);
         }
         return details::load_configuration<TConfig>(full_path);
     }
