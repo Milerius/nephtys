@@ -47,7 +47,7 @@ function build() {
 
 function run_test() {
     cd ${TRAVIS_BUILD_DIR}/cmake-build-${BUILD_TYPE}/bin
-    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then for i in *-test; do xvfb-run ./${i} --reporters=xml --out=${i}-result.xml -s || true; done; fi
+    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then for i in *-test; do sudo xvfb-run ./${i} --reporters=xml --out=${i}-result.xml -s || true; done; fi
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then for i in *-test; do ./${i} --reporters=xml --out=${i}-result.xml -s || true; done; fi
 
 }
