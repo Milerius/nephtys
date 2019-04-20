@@ -4,6 +4,7 @@ extraction:
       packages:
         - python-pip
         - pkg-config
+        - libxrandr-dev
     after_prepare:    # Customizable step used by all languages.
       - pip3 install --local cmake conan
       - pip3 install --local cmake conan --upgrade
