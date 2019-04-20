@@ -66,6 +66,18 @@ macro(download_app_image)
     endif ()
 endmacro()
 
+macro(init_rpath)
+    if (APPLE)
+        set(CMAKE_INSTALL_RPATH "@executable_path/../lib")
+    elseif (LINUX)
+        set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
+    endif ()
+
+    if (UNIX)
+        set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+    endif ()
+endmacro()
+
 macro(init_env)
     if (UNIX AND NOT APPLE)
         set(LINUX TRUE)

@@ -44,17 +44,4 @@ namespace nephtys::client
     {
         return window == rhs_config.window;
     }
-
-    bool win_cfg::operator==(const win_cfg &rhs_win) const noexcept
-    {
-        return height == rhs_win.height &&
-               width == rhs_win.width &&
-               title == rhs_win.title &&
-               is_fullscreen == rhs_win.is_fullscreen;
-    }
-
-    bool win_cfg::operator!=(const win_cfg &rhs_win) const noexcept
-    {
-        return !(rhs_win == *this);
-    }
 }
