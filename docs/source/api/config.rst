@@ -24,9 +24,4 @@ Below is an example of a valid configuration for the nephtys client:
        }
     }
 
-
-nephtys::utils
-==============
-
-.. doxygenfunction:: load_configuration
-   :project: nephtys
+See also :ref:`nephtys::utils`.

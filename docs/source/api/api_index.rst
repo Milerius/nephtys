@@ -7,3 +7,4 @@ api reference manual
    :maxdepth: 2
 
    config
+   utils
