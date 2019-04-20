@@ -35,7 +35,7 @@ before_build:
 build_script:
   - cmake --build . --config %BUILD_TYPE% -- /verbosity:minimal /maxcpucount:3
   - cd bin && ls
-  - nephtys-sfml-graphics-test.exe --reporters=xml --out=nephtys-sfml-graphics-result.xml -s
+  #- nephtys-sfml-graphics-test.exe --reporters=xml --out=nephtys-sfml-graphics-result.xml -s
   - nephtys-client-test.exe --reporters=xml --out=nephtys-client-result.xml -s
   - nephtys-common-test.exe --reporters=xml --out=nephtys-common-result.xml -s
 
