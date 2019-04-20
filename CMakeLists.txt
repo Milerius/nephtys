@@ -20,7 +20,7 @@ init_nephtys()
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS KEEP_RPATHS)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-init_rpath()
+#init_rpath()
 
 ##! Generate version header
 if (NOT EXISTS common/common/include/nephtys/version.hpp)
