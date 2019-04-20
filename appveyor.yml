@@ -40,7 +40,7 @@ build_script:
       foreach ($file in get-ChildItem $filePattern)
       {
           $var = $file.name
-          & ./$var --reporters=xml --out=$var-result.xml -s
+          $var --reporters=xml --out=$var-result.xml -s
       }
 
 on_failure:
