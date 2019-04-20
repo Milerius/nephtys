@@ -4,7 +4,6 @@ target_compile_features(nephtys_client_shared_deps INTERFACE cxx_std_17)
 
 target_link_libraries(nephtys_client_shared_deps INTERFACE
         CONAN_PKG::sfml
-        CONAN_PKG::entt
         CONAN_PKG::jsonformoderncpp
         CONAN_PKG::doom_strong_types
         nephtys::loguru
@@ -27,7 +26,7 @@ target_enable_ubsan(nephtys_client_shared_deps)
 ################################### nephtys_client
 add_executable(nephtys_client)
 target_sources(nephtys_client PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
-target_link_libraries(nephtys_client PUBLIC nephtys_client_shared_deps)
+target_link_libraries(nephtys_client PUBLIC nephtys_client_shared_deps nephtys::sfml-graphics)
 if (LINUX)
     get_target_property(nephtys_client_runtime_directory nephtys_client RUNTIME_OUTPUT_DIRECTORY)
     set_target_properties(nephtys_client PROPERTIES

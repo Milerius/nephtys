@@ -1,0 +1,5 @@
+add_library(nephtys-sfml-graphics OBJECT)
+target_sources(nephtys-sfml-graphics PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/sfml-graphics.cpp)
+target_include_directories(nephtys-sfml-graphics PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(nephtys-sfml-graphics PUBLIC CONAN_PKG::entt)
+add_library(nephtys::sfml-graphics ALIAS nephtys-sfml-graphics)

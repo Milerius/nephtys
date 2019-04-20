@@ -1,4 +1,5 @@
 #include <iostream>
+#include <nephtys/graphics/sfml-graphics.hpp>
 
 int main()
 {

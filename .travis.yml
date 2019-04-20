@@ -186,6 +186,7 @@ matrix:
 
     - os: osx
       osx_image: xcode10.2
+      sudo: true
       env: [BUILD_TYPE=Release,
             CLANG_VERSION=clang-8,
             CC=clang,
@@ -204,6 +205,7 @@ matrix:
 
     - os: osx
       osx_image: xcode10.2
+      sudo: true
       env: [BUILD_TYPE=Debug,
             CLANG_VERSION=clang-8,
             CC=clang,
@@ -222,6 +224,7 @@ matrix:
 
     - os: osx
       osx_image: xcode10.2
+      sudo: true
       env: [BUILD_TYPE=Debug,
             CLANG_VERSION=clang-8,
             CC=clang,

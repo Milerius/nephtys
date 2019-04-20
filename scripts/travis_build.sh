@@ -32,9 +32,9 @@ function build() {
     fi
 
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        conan install --build sfml ../;
+        conan install --build missing ../
      else
-        conan install ../
+        conan install --build missing ../
      fi
     echo "result -> ${cmd} ${options} ../"
     ${cmd} ${options} ../

@@ -22,8 +22,8 @@ conan_basic_setup(TARGETS)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 ##! Generate version header
-if (NOT EXISTS ${PROJECT_SOURCE_DIR}/common/include/nephtys/version.hpp)
-    configure_file(${CMAKE_MODULE_PATH}/version.hpp.in ${PROJECT_SOURCE_DIR}/common/include/nephtys/version.hpp @ONLY)
+if (NOT EXISTS common/common/include/nephtys/version.hpp)
+    configure_file(${CMAKE_MODULE_PATH}/version.hpp.in common/common/include/nephtys/version.hpp @ONLY)
 endif ()
 
 ##! CMake Options
