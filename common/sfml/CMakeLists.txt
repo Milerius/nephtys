@@ -5,7 +5,8 @@ target_link_libraries(nephtys-sfml-graphics-shared-deps INTERFACE
         CONAN_PKG::sfml
         CONAN_PKG::doom_strong_types
         nephtys::common
-        nephtys::default_settings)
+        nephtys::default_settings
+        $<$<PLATFORM_ID:Linux>:m>)
 target_sources(nephtys-sfml-graphics-shared-deps INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/sfml.graphics.cpp)
 
 add_library(nephtys-sfml-graphics STATIC)
