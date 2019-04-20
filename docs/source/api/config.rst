@@ -23,3 +23,5 @@ Below is an example of a valid configuration for the nephtys client:
           "fullscreen":false
        }
     }
+
+See also :ref:`nephtys::utils`.

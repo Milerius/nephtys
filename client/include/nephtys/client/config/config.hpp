@@ -48,7 +48,7 @@ namespace nephtys::client
          * @param rhs_config the config that you want to compare.
          * @return `true` if the configurations are equal, `false` otherwise.
          */
-        bool operator==(const config &rhs) const noexcept;
+        bool operator==(const config &rhs_config) const noexcept;
 
         /**
          *

@@ -42,6 +42,7 @@ release = u'0.0.1'
 # ones.
 extensions = [
     'sphinx.ext.githubpages',
+    'sphinx.ext.autosectionlabel',
     'breathe'
 ]
 
