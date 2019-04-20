@@ -8,6 +8,10 @@ doom_strong_types/1.0.0@bintray/stable
 
 [options]
 fmt:header_only=True
+sfml:graphics=True
+sfml:window=True
+sfml:audio=False
+sfml:network=False
 
 [generators]
 cmake
