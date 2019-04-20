@@ -10,6 +10,5 @@ namespace nephtys::sfml
             win_cfg_(win_cfg),
             win_{sf::VideoMode(win_cfg.width.value(), win_cfg.height.value()), win_cfg_.title}
     {
-
     }
 }
