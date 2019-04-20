@@ -40,9 +40,9 @@ namespace nephtys::client
         return !(rhs_config == *this);
     }
 
-    bool config::operator==(const config &rhs) const noexcept
+    bool config::operator==(const config &rhs_config) const noexcept
     {
-        return window == rhs.window;
+        return window == rhs_config.window;
     }
 
     bool win_cfg::operator==(const win_cfg &rhs_win) const noexcept

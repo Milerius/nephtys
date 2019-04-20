@@ -23,3 +23,10 @@ Below is an example of a valid configuration for the nephtys client:
           "fullscreen":false
        }
     }
+
+
+nephtys::utils
+==============
+
+.. doxygenfunction:: load_configuration
+   :project: nephtys

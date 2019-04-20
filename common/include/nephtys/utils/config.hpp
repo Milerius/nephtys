@@ -38,7 +38,7 @@ namespace nephtys::utils
         }
 
         template<typename TConfig>
-        TConfig load_configuration(const std::filesystem::path &full_path) noexcept
+        TConfig load_config(const std::filesystem::path &full_path) noexcept
         {
             TConfig config_to_fill{};
             VLOG_SCOPE_F(loguru::Verbosity_INFO, __FUNCTION__);
@@ -51,6 +51,23 @@ namespace nephtys::utils
         }
     }
 
+    /**
+     * @brief This function allows us to load a configuration through a `path` and `filename`.
+     *        There are three different behaviors in this function:
+     *        - if the parameter path does not exist the function will attempt to create the directories of the given `path`.
+     *        - if the configuration does not exist a default one will be **created**.
+     *        - if the `path` and the `name` of the file exists, the contents of the configuration will be **loaded**.
+     *
+     * @tparam TConfig the type of template you want to load
+     * @param config_path the path to the configuration you want to load
+     * @param filename the name of the configuration you want to load.
+     * @return a loaded/created configuration.
+     *
+     *  Example:
+     *  @code{.cpp}
+     *   auto cfg = utils::load_configuration<client::config>(std::filesystem::current_path() / "assets/config", "nephtys_client.config.json");
+     *  @endcode
+     */
     template<typename TConfig>
     TConfig load_configuration(std::filesystem::path &&config_path, std::string filename) noexcept
     {
@@ -60,6 +77,6 @@ namespace nephtys::utils
         if (!std::filesystem::exists(config_path)) {
             return details::create_configuration<TConfig>(config_path, full_path);
         }
-        return details::load_configuration<TConfig>(full_path);
+        return details::load_config<TConfig>(full_path);
     }
 }
