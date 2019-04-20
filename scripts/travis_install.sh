@@ -47,7 +47,13 @@ function coverage_setup() {
     fi
 }
 
-if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then export PATH="/usr/local/opt/llvm/bin:$PATH"; fi
+function setup_osx() {
+    export PATH="/usr/local/opt/llvm/bin:$PATH"
+    cd /Library/Developer/CommandLineTools/Packages/
+    sudo installer -pkg macOS_SDK_headers_for_macOS_10.14.pkg -target /
+}
+
+if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then setup_osx; fi
 if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then conan_setup; fi
 if [[ "${WILL_COMPILE_CODE}" == "ON" ]] && [[ "${TRAVIS_OS_NAME}" == "linux" ]] && [[ "${DEFAULT_COMPILER}" == "gcc" ]] ; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/${CXX} 100; fi
 if [[ "${TRAVIS_OS_NAME}" == "linux" ]] && [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then last_cmake_linux; fi
