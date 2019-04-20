@@ -8,7 +8,7 @@ target_link_libraries(nephtys-sfml-graphics-shared-deps INTERFACE
         nephtys::default_settings)
 target_sources(nephtys-sfml-graphics-shared-deps INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/sfml.graphics.cpp)
 
-add_library(nephtys-sfml-graphics OBJECT)
+add_library(nephtys-sfml-graphics STATIC)
 target_link_libraries(nephtys-sfml-graphics PUBLIC nephtys-sfml-graphics-shared-deps)
 add_library(nephtys::sfml-graphics ALIAS nephtys-sfml-graphics)
 
@@ -16,5 +16,5 @@ add_executable(nephtys-sfml-graphics-test)
 target_sources(nephtys-sfml-graphics-test PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/test/test.sfml.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/sfml.graphics.test.cpp)
-target_link_libraries(nephtys-sfml-graphics-test PRIVATE CONAN_PKG::doctest nephtys-sfml-graphics-shared-deps)
+target_link_libraries(nephtys-sfml-graphics-test PRIVATE CONAN_PKG::doctest nephtys-sfml-graphics)
 
