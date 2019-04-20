@@ -29,7 +29,7 @@ install:
 before_build:
   - mkdir cmake-build-debug
   - cd cmake-build-debug
-  - conan install ../
+  - conan install ../.conan/windows
   - cmake ../ -G "%GENERATOR%" -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DCMAKE_IGNORE_PATH="C:/Program Files/Git/usr/bin"
 
 build_script:

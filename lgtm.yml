@@ -22,7 +22,7 @@ extraction:
       - conan remote add skypjack https://api.bintray.com/conan/skypjack/conan False
       - mkdir $LGTM_SRC/_lgtm_build_dir
       - cd $LGTM_SRC/_lgtm_build_dir
-      - conan install -g cmake ../
+      - conan install -g cmake ../.conan/linux
       - cd -
 
 

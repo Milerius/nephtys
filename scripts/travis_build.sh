@@ -32,9 +32,9 @@ function build() {
     fi
 
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        conan install --build missing ../
+        conan install --build missing ../.conan/osx
      else
-        conan install --build missing ../
+        conan install --build missing ../.conan/linux
      fi
     echo "result -> ${cmd} ${options} ../"
     ${cmd} ${options} ../
