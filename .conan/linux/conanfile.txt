@@ -15,3 +15,8 @@ sfml:network=False
 
 [generators]
 cmake
+
+[imports]
+bin, *.dll -> ./bin # Copies all dll files from packages bin folder to my "bin" folder
+lib, *.dylib* -> ./bin # Copies all dylib files from packages lib folder to my "lib" folder
+lib, *.so* -> ./lib # Copies all so files from packages lib folder to my "lib" folder

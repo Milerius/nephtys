@@ -6,5 +6,6 @@ api reference manual
    :name: apitoc
    :maxdepth: 2
 
-   config
+   nephtys-client-config
+   nephtys-window-config
    utils

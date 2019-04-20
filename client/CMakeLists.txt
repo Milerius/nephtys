@@ -3,7 +3,6 @@ add_library(nephtys_client_shared_deps INTERFACE)
 target_compile_features(nephtys_client_shared_deps INTERFACE cxx_std_17)
 
 target_link_libraries(nephtys_client_shared_deps INTERFACE
-        CONAN_PKG::sfml
         CONAN_PKG::jsonformoderncpp
         CONAN_PKG::doom_strong_types
         nephtys::loguru

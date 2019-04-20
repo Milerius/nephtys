@@ -6,6 +6,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:
@@ -19,6 +21,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:
@@ -35,6 +39,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:
@@ -54,6 +60,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:
@@ -74,6 +82,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:
@@ -93,6 +103,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:
@@ -112,6 +124,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:
@@ -131,6 +145,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:
@@ -159,6 +175,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:
@@ -174,6 +192,8 @@ matrix:
       python: 3.7
       sudo: true
       dist: xenial
+      services:
+        - xvfb
       addons:
         apt:
           sources:

@@ -32,9 +32,9 @@ function build() {
     fi
 
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        conan install --build missing ../
+        conan install --build missing ../.conan/osx
      else
-        conan install --build missing ../
+        conan install --build missing ../.conan/linux
      fi
     echo "result -> ${cmd} ${options} ../"
     ${cmd} ${options} ../
@@ -47,7 +47,9 @@ function build() {
 
 function run_test() {
     cd ${TRAVIS_BUILD_DIR}/cmake-build-${BUILD_TYPE}/bin
-    for i in *-test; do ./${i} --reporters=xml --out=${i}-result.xml -s || true; done
+    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then for i in *-test; do ./${i} --reporters=xml --out=${i}-result.xml -s || true; done; fi
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then for i in *-test; do ./${i} --reporters=xml --out=${i}-result.xml -s || true; done; fi
+
 }
 
 function run_coverage() {

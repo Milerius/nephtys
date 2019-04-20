@@ -66,6 +66,18 @@ macro(download_app_image)
     endif ()
 endmacro()
 
+macro(init_rpath)
+    if (APPLE)
+        set(CMAKE_INSTALL_RPATH "@executable_path/../lib")
+    elseif (LINUX)
+        set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
+    endif ()
+
+    if (UNIX)
+        set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+    endif ()
+endmacro()
+
 macro(init_env)
     if (UNIX AND NOT APPLE)
         set(LINUX TRUE)
@@ -81,14 +93,24 @@ macro(exec_conan)
         if (USE_CONAN_HELPERS)
             message("Conan need to be executed")
             message("Conan installing remote ...")
-            execute_process(COMMAND conan config install ../.conan/
+            execute_process(COMMAND conan config install ../.conan/remotes
                     RESULT_VARIABLE CMD_ERROR
                     OUTPUT_FILE CMD_OUTPUT)
             file(READ "${CMAKE_CURRENT_BINARY_DIR}/CMD_OUTPUT" OUTPUT)
             message("Conan adding remote output: ${OUTPUT}")
-            execute_process(COMMAND conan install ../
-                    RESULT_VARIABLE CMD_ERROR
-                    OUTPUT_FILE CMD_OUTPUT)
+            if (APPLE)
+                execute_process(COMMAND conan install ../.conan/osx
+                        RESULT_VARIABLE CMD_ERROR
+                        OUTPUT_FILE CMD_OUTPUT)
+            elseif (LINUX)
+                execute_process(COMMAND conan install ../.conan/linux
+                        RESULT_VARIABLE CMD_ERROR
+                        OUTPUT_FILE CMD_OUTPUT)
+            else ()
+                execute_process(COMMAND conan install ../.conan/windows
+                        RESULT_VARIABLE CMD_ERROR
+                        OUTPUT_FILE CMD_OUTPUT)
+            endif ()
             file(READ "${CMAKE_CURRENT_BINARY_DIR}/CMD_OUTPUT" OUTPUT)
             message("Conan install output: ${OUTPUT}")
 
