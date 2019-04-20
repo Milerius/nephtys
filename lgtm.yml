@@ -5,6 +5,7 @@ extraction:
         - python-pip
         - pkg-config
         - libxrandr-dev
+        - libudev-dev
     after_prepare:    # Customizable step used by all languages.
       - pip3 install --local cmake conan
       - pip3 install --local cmake conan --upgrade
