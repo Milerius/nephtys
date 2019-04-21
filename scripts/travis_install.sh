@@ -56,5 +56,5 @@ if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then setup_osx || travis_terminate 1; fi
 if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then conan_setup || travis_terminate 1; fi
 if [[ "${WILL_COMPILE_CODE}" == "ON" ]] && [[ "${TRAVIS_OS_NAME}" == "linux" ]] && [[ "${DEFAULT_COMPILER}" == "gcc" ]] ; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/${CXX} 100; fi
 if [[ "${TRAVIS_OS_NAME}" == "linux" ]] && [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then last_cmake_linux; fi
-if [[ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]]; then ${PIP} install sphinx==1.8.4 breathe || travis_terminate 1; fi
+if [[ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]]; then ${PIP} install sphinx breathe || travis_terminate 1; fi
 if [[ -n "${CODE_COVERAGE}" ]]; then coverage_setup || travis_terminate 1; fi
