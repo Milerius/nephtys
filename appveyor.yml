@@ -41,7 +41,9 @@ build_script:
       foreach ($file in get-ChildItem $filePattern)
       {
         $var = $file.name
-        ./$var --reporters=xml --out="$var-result.xml" -s
+        Write-Host $var
+        Write-Host $file.name
+        & ./$var --reporters=xml --out="$var-result.xml" -s
       }
   #- nephtys-sfml-graphics-test.exe --reporters=xml --out=nephtys-sfml-graphics-result.xml -s
   #- nephtys-client-test.exe --reporters=xml --out=nephtys-client-result.xml -s
