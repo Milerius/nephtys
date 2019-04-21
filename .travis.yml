@@ -2,7 +2,10 @@ matrix:
   include:
     - os: linux
       language: python
-      cache: pip
+      cache:
+        - pip
+        directories:
+          - $HOME/.conan/data
       python: 3.7
       sudo: true
       dist: xenial
@@ -17,7 +20,10 @@ matrix:
       env: [CXX=g++-8, CC=gcc-8, WILL_COMPILE_CODE=ON, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=gcc, PIP=pip]
     - os: linux
       language: python
-      cache: pip
+      cache:
+        - pip
+        directories:
+          - $HOME/.conan/data
       python: 3.7
       sudo: true
       dist: xenial
@@ -35,7 +41,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        - pip
+        directories:
+          - $HOME/.conan/data
       python: 3.7
       sudo: true
       dist: xenial
@@ -56,7 +65,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        - pip
+        directories:
+          - $HOME/.conan/data
       python: 3.7
       sudo: true
       dist: xenial
@@ -78,7 +90,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        - pip
+        directories:
+          - $HOME/.conan/data
       python: 3.7
       sudo: true
       dist: xenial
@@ -99,7 +114,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        - pip
+        directories:
+          - $HOME/.conan/data
       python: 3.7
       sudo: true
       dist: xenial
@@ -120,7 +138,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        - pip
+        directories:
+          - $HOME/.conan/data
       python: 3.7
       sudo: true
       dist: xenial
@@ -141,7 +162,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        - pip
+        directories:
+          - $HOME/.conan/data
       python: 3.7
       sudo: true
       dist: xenial
@@ -159,6 +183,7 @@ matrix:
             BUILD_TYPE=Release,
             DEFAULT_COMPILER=gcc,
             NINJA=ON, PIP=pip]
+
 
     - os: linux
       language: python
@@ -186,6 +211,9 @@ matrix:
               key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
           packages: [clang-8, libstdc++-8-dev]
       env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Release, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, DEPLOY=ON, PIP=pip]
+      cache:
+        directories:
+          - $HOME/.conan/data
 
     - os: linux
       language: python
@@ -203,6 +231,9 @@ matrix:
               key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
           packages: [clang-8, libstdc++-8-dev]
       env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, PIP=pip]
+      cache:
+        directories:
+          - $HOME/.conan/data
 
     - os: osx
       osx_image: xcode10.2
@@ -218,6 +249,9 @@ matrix:
             CPPFLAGS=-I/usr/local/opt/llvm/include,
             PIP=pip3,
             WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang, DEPLOY=ON]
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
       addons:
         homebrew:
           packages: [cmake,ninja,llvm,python3, jq]
@@ -237,6 +271,9 @@ matrix:
             CPPFLAGS=-I/usr/local/opt/llvm/include,
             PIP=pip3,
             WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang]
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
       addons:
         homebrew:
           packages: [cmake,ninja,llvm,python3]
@@ -256,6 +293,9 @@ matrix:
             CPPFLAGS=-I/usr/local/opt/llvm/include,
             PIP=pip3,
             WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang, CODE_COVERAGE=ON]
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
       addons:
         homebrew:
           packages: [cmake,ninja,llvm,python3]
