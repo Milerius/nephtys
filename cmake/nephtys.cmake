@@ -99,15 +99,15 @@ macro(exec_conan)
             file(READ "${CMAKE_CURRENT_BINARY_DIR}/CMD_OUTPUT" OUTPUT)
             message("Conan adding remote output: ${OUTPUT}")
             if (APPLE)
-                execute_process(COMMAND conan install ../.conan/osx
+                execute_process(COMMAND conan install --build missing ../.conan/osx
                         RESULT_VARIABLE CMD_ERROR
                         OUTPUT_FILE CMD_OUTPUT)
             elseif (LINUX)
-                execute_process(COMMAND conan install ../.conan/linux
+                execute_process(COMMAND conan install --build missing ../.conan/linux
                         RESULT_VARIABLE CMD_ERROR
                         OUTPUT_FILE CMD_OUTPUT)
             else ()
-                execute_process(COMMAND conan install ../.conan/windows
+                execute_process(COMMAND conan install --build missing ../.conan/windows
                         RESULT_VARIABLE CMD_ERROR
                         OUTPUT_FILE CMD_OUTPUT)
             endif ()
