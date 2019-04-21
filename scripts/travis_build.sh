@@ -33,16 +33,16 @@ function build() {
     fi
 
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        conan install --build missing ../.conan/osx
+        conan install --build missing ../.conan/osx || travis_terminate 1
      else
-        conan install --build missing ../.conan/linux
+        conan install --build missing ../.conan/linux || travis_terminate 1
      fi
     echo "result -> ${cmd} ${options} ../"
     ${cmd} ${options} ../
     if [[ -n ${NINJA} ]]; then
-        ninja
+        ninja || travis_terminate 1
     else
-        make VERBOSE=1 -j2;
+        make VERBOSE=1 -j2 || travis_terminate 1
     fi
 }
 
@@ -74,8 +74,8 @@ function upload_test() {
     curl https://report.ci/upload.py --output upload.py && python upload.py -n "${doctest_upload_name}"
 }
 
-if [[ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]]; then build_doc; fi
-if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then build; fi
-if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then run_test; fi
-if [[ "${CODE_COVERAGE}" == "ON" ]]; then run_coverage; fi
-if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then upload_test; fi
+if [[ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]]; then build_doc || travis_terminate 1; fi
+if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then build || travis_terminate 1; fi
+if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then run_test || travis_terminate 1; fi
+if [[ "${CODE_COVERAGE}" == "ON" ]]; then run_coverage || travis_terminate 1; fi
+if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then upload_test || travis_terminate 1; fi
