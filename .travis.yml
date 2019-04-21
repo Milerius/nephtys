@@ -250,6 +250,8 @@ matrix:
             CPPFLAGS=-I/usr/local/opt/llvm/include,
             PIP=pip3,
             WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang, DEPLOY=ON]
+      before_cache:
+        - brew cleanup
       cache:
         directories:
           - $HOME/Library/Caches/Homebrew
@@ -272,6 +274,8 @@ matrix:
             CPPFLAGS=-I/usr/local/opt/llvm/include,
             PIP=pip3,
             WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang]
+      before_cache:
+        - brew cleanup
       cache:
         directories:
           - $HOME/Library/Caches/Homebrew
@@ -294,6 +298,8 @@ matrix:
             CPPFLAGS=-I/usr/local/opt/llvm/include,
             PIP=pip3,
             WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang, CODE_COVERAGE=ON]
+      before_cache:
+        - brew cleanup
       cache:
         directories:
           - $HOME/Library/Caches/Homebrew
