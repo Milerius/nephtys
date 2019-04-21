@@ -3,9 +3,9 @@ matrix:
     - os: linux
       language: python
       cache:
-        - pip
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -21,9 +21,9 @@ matrix:
     - os: linux
       language: python
       cache:
-        - pip
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -42,9 +42,9 @@ matrix:
     - os: linux
       language: python
       cache:
-        - pip
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -66,9 +66,9 @@ matrix:
     - os: linux
       language: python
       cache:
-        - pip
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -91,9 +91,9 @@ matrix:
     - os: linux
       language: python
       cache:
-        - pip
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -115,9 +115,9 @@ matrix:
     - os: linux
       language: python
       cache:
-        - pip
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -139,9 +139,9 @@ matrix:
     - os: linux
       language: python
       cache:
-        - pip
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -163,9 +163,9 @@ matrix:
     - os: linux
       language: python
       cache:
-        - pip
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -187,6 +187,7 @@ matrix:
 
     - os: linux
       language: python
+      cache: pip
       python: 3.7
       sudo: true
       dist: xenial
