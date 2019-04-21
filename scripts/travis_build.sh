@@ -25,7 +25,8 @@ function build() {
     elif [[ "${UBSAN}" == "ON" ]] && [[ "${BUILD_TYPE}" == "Debug" ]]; then
         options+=' -DUSE_UBSAN=ON'
         doctest_upload_name+='-UBSAN'
-        if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then options+=' -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold'; fi
+        if [[ "${TRAVIS_OS_NAME}" == "linux" ]] && [[ "${DEFAULT_COMPILER}" == "gcc" ]]; then options+=' -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold'; fi
+        if [[ "${TRAVIS_OS_NAME}" == "linux" ]] && [[ "${DEFAULT_COMPILER}" == "clang" ]]; then options+=' -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=lld'; fi
     elif [[ "${NINJA}" == "ON" ]]; then
         options+=' -GNinja'
         doctest_upload_name+='-Ninja'
