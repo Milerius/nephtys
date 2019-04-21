@@ -25,23 +25,24 @@ function build() {
     elif [[ "${UBSAN}" == "ON" ]] && [[ "${BUILD_TYPE}" == "Debug" ]]; then
         options+=' -DUSE_UBSAN=ON'
         doctest_upload_name+='-UBSAN'
-        if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then options+=' -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold'; fi
+        if [[ "${TRAVIS_OS_NAME}" == "linux" ]] && [[ "${DEFAULT_COMPILER}" == "gcc" ]]; then options+=' -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold'; fi
+        if [[ "${TRAVIS_OS_NAME}" == "linux" ]] && [[ "${DEFAULT_COMPILER}" == "clang" ]]; then options+=' -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=lld'; fi
     elif [[ "${NINJA}" == "ON" ]]; then
         options+=' -GNinja'
         doctest_upload_name+='-Ninja'
     fi
 
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        conan install --build missing ../.conan/osx
+        conan install --build missing ../.conan/osx || travis_terminate 1
      else
-        conan install --build missing ../.conan/linux
+        conan install --build missing ../.conan/linux || travis_terminate 1
      fi
     echo "result -> ${cmd} ${options} ../"
     ${cmd} ${options} ../
     if [[ -n ${NINJA} ]]; then
-        ninja
+        ninja || travis_terminate 1
     else
-        make VERBOSE=1 -j2;
+        make VERBOSE=1 -j2 || travis_terminate 1
     fi
 }
 
@@ -70,11 +71,12 @@ function run_coverage() {
 function upload_test() {
     cd ${TRAVIS_BUILD_DIR}/cmake-build-${BUILD_TYPE}/bin
     doctest_upload_name+=']'
+    echo "uploading doctest: ${doctest_upload_name}"
     curl https://report.ci/upload.py --output upload.py && python upload.py -n "${doctest_upload_name}"
 }
 
-if [[ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]]; then build_doc; fi
-if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then build; fi
-if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then run_test; fi
-if [[ "${CODE_COVERAGE}" == "ON" ]]; then run_coverage; fi
-if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then upload_test; fi
+if [[ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]]; then build_doc || travis_terminate 1; fi
+if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then build || travis_terminate 1; fi
+if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then run_test || travis_terminate 1; fi
+if [[ "${CODE_COVERAGE}" == "ON" ]]; then run_coverage || travis_terminate 1; fi
+if [[ "${WILL_COMPILE_CODE}" == "ON" ]]; then upload_test || travis_terminate 1; fi

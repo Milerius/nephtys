@@ -2,7 +2,10 @@ matrix:
   include:
     - os: linux
       language: python
-      cache: pip
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -12,12 +15,15 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-          packages:
-            - g++-8
+          packages: [g++-8, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
       env: [CXX=g++-8, CC=gcc-8, WILL_COMPILE_CODE=ON, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=gcc, PIP=pip]
+
     - os: linux
       language: python
-      cache: pip
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -27,15 +33,17 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-          packages:
-            - g++-8
+          packages: [g++-8, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
       env: [CODE_COVERAGE=ON,
             CXX=g++-8, CC=gcc-8, WILL_COMPILE_CODE=ON,
             COVERAGE_TOOL=gcov-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=gcc, PIP=pip]
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -45,7 +53,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-          packages: [g++-8, jq]
+          packages: [g++-8, jq, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
       env: [CXX=g++-8,
             CC=gcc-8,
             WILL_COMPILE_CODE=ON,
@@ -56,7 +64,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -66,8 +77,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-          packages:
-            - g++-8
+          packages: [g++-8, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
       env: [CXX=g++-8,
             CC=gcc-8,
             WILL_COMPILE_CODE=ON,
@@ -78,7 +88,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -88,7 +101,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-          packages: [g++-8]
+          packages: [g++-8, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
       env: [CXX=g++-8,
             CC=gcc-8,
             WILL_COMPILE_CODE=ON,
@@ -99,7 +112,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -109,7 +125,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-          packages: [g++-8, binutils]
+          packages: [g++-8, libxrandr-dev, libudev-dev, binutils, libgl1-mesa-dev]
       env: [CXX=g++-8,
             CC=gcc-8,
             WILL_COMPILE_CODE=ON,
@@ -120,7 +136,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -130,7 +149,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-          packages: [g++-8, ninja-build]
+          packages: [g++-8, ninja-build, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
       env: [CXX=g++-8,
             CC=gcc-8,
             WILL_COMPILE_CODE=ON,
@@ -141,7 +160,10 @@ matrix:
 
     - os: linux
       language: python
-      cache: pip
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -151,7 +173,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-          packages: [g++-8, ninja-build]
+          packages: [g++-8, ninja-build, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
       env: [CXX=g++-8,
             CC=gcc-8,
             WILL_COMPILE_CODE=ON,
@@ -160,8 +182,10 @@ matrix:
             DEFAULT_COMPILER=gcc,
             NINJA=ON, PIP=pip]
 
+
     - os: linux
       language: python
+      cache: pip
       python: 3.7
       sudo: true
       dist: xenial
@@ -184,8 +208,12 @@ matrix:
             - llvm-toolchain-xenial-8 main
             - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
               key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
-          packages: [clang-8, libstdc++-8-dev]
+          packages: [clang-8, libstdc++-8-dev, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
       env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Release, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, DEPLOY=ON, PIP=pip]
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
 
     - os: linux
       language: python
@@ -201,8 +229,77 @@ matrix:
             - llvm-toolchain-xenial-8 main
             - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
               key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
-          packages: [clang-8, libstdc++-8-dev]
+          packages: [clang-8, libstdc++-8-dev, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
       env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, PIP=pip]
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
+
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      services:
+        - xvfb
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-8 main
+            - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages: [clang-8, libstdc++-8-dev, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
+      env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, PIP=pip, ASAN=ON]
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
+
+
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      services:
+        - xvfb
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-8 main
+            - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages: [clang-8, libstdc++-8-dev, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
+      env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, PIP=pip, TSAN=ON]
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
+
+
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      services:
+        - xvfb
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-8 main
+            - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages: [clang-8, libstdc++-8-dev, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
+      env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, PIP=pip, UBSAN=ON]
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
 
     - os: osx
       osx_image: xcode10.2
@@ -218,6 +315,13 @@ matrix:
             CPPFLAGS=-I/usr/local/opt/llvm/include,
             PIP=pip3,
             WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang, DEPLOY=ON]
+      before_cache:
+        - brew cleanup
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
+          - /Users/travis/.conan/data
+          - /Users/travis/Library/Caches/pip/
       addons:
         homebrew:
           packages: [cmake,ninja,llvm,python3, jq]
@@ -237,6 +341,13 @@ matrix:
             CPPFLAGS=-I/usr/local/opt/llvm/include,
             PIP=pip3,
             WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang]
+      before_cache:
+        - brew cleanup
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
+          - /Users/travis/.conan/data
+          - /Users/travis/Library/Caches/pip/
       addons:
         homebrew:
           packages: [cmake,ninja,llvm,python3]
@@ -256,6 +367,13 @@ matrix:
             CPPFLAGS=-I/usr/local/opt/llvm/include,
             PIP=pip3,
             WILL_COMPILE_CODE=ON, DEFAULT_COMPILER=clang, CODE_COVERAGE=ON]
+      before_cache:
+        - brew cleanup
+      cache:
+        directories:
+          - $HOME/Library/Caches/Homebrew
+          - /Users/travis/Library/Caches/pip/
+          - /Users/travis/.conan/data
       addons:
         homebrew:
           packages: [cmake,ninja,llvm,python3]
