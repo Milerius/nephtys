@@ -390,7 +390,7 @@ before_deploy:
   - |
     cd ${TRAVIS_BUILD_DIR}
     cat scripts/bintray.json
-    if [ "${BUILD_TYPE}" == "Release" ] && [ -n $DEPLOY ]; then
+    if [ "${BUILD_TYPE}" == "Release" ] && [ "${DEPLOY}" == "ON" ]; then
       jq --arg PLATFORM "${TRAVIS_OS_NAME}" '.package.name = "nephtys-" + $PLATFORM' scripts/bintray.json > tmp.json && mv tmp.json scripts/bintray.json
       if [ "${TRAVIS_OS_NAME}" == "linux" ]; then ./scripts/deploy_linux.sh; fi
       if [ "${TRAVIS_OS_NAME}" == "osx" ]; then ./scripts/deploy_osx.sh; fi
