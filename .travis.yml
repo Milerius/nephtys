@@ -255,7 +255,7 @@ matrix:
       cache:
         directories:
           - $HOME/Library/Caches/Homebrew
-          - /Users/travis/.conan/
+          - /Users/travis/.conan/data
           - /Users/travis/Library/Caches/pip/
       addons:
         homebrew:
@@ -281,7 +281,7 @@ matrix:
       cache:
         directories:
           - $HOME/Library/Caches/Homebrew
-          - /Users/travis/.conan/
+          - /Users/travis/.conan/data
           - /Users/travis/Library/Caches/pip/
       addons:
         homebrew:
@@ -308,7 +308,7 @@ matrix:
         directories:
           - $HOME/Library/Caches/Homebrew
           - /Users/travis/Library/Caches/pip/
-          - /Users/travis/.conan/
+          - /Users/travis/.conan/data
       addons:
         homebrew:
           packages: [cmake,ninja,llvm,python3]
