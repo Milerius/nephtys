@@ -6,7 +6,7 @@ function init() {
     root_dir=$(pwd)
     mkdir deploy_linux
     rm -rf appimage_build && mkdir appimage_build && cd appimage_build
-    conan install ../.conan/linux
+    conan install --build missing ../.conan/linux
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DAUTO_BUILD_APPIMAGE=ON ../
 }
 
