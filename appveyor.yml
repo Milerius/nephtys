@@ -41,7 +41,7 @@ build_script:
       foreach ($file in get-ChildItem $filePattern)
       {
         $var = $file.name
-        $cmd = "& $var --reporters=xml --out=$var-result.xml -s"
+        $cmd = "& ./$var --reporters=xml --out=$var-result.xml -s"
         Invoke-Expression $cmd
       }
   #- nephtys-sfml-graphics-test.exe --reporters=xml --out=nephtys-sfml-graphics-result.xml -s
