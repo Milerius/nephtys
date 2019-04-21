@@ -13,15 +13,17 @@ namespace nephtys::timer
     class time_step
     {
     public:
+        time_step() noexcept;
+
         void start() noexcept;
 
         void start_frame() noexcept;
 
-        bool is_update_required() const noexcept;
+        [[nodiscard]] bool is_update_required() const noexcept;
 
         void perform_update() noexcept;
 
-        st::delta_time get_fixed_delta_time() const noexcept;
+        [[nodiscard]] st::delta_time get_fixed_delta_time() const noexcept;
 
     private:
         using clock = std::chrono::steady_clock;

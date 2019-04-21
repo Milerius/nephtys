@@ -3,12 +3,12 @@
 //
 
 #include <loguru.hpp>
+#include <nephtys/client/world/world.hpp>
 #include <nephtys/utils/pretty_function.hpp>
-#include <nephtys/input/sfml.input.hpp>
 
-namespace nephtys::sfml
+namespace nephtys::client
 {
-    input::input(sf::RenderWindow &win) noexcept : win_(win)
+    world::world() noexcept
     {
         VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
     }

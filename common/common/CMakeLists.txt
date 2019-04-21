@@ -2,6 +2,7 @@ add_library(nephtys-common INTERFACE)
 target_include_directories(nephtys-common INTERFACE include)
 target_link_libraries(nephtys-common INTERFACE
         CONAN_PKG::doom_strong_types
+        nephtys::loguru
         $<$<PLATFORM_ID:Linux>:stdc++fs>
         $<$<PLATFORM_ID:Darwin>:c++fs>)
 add_library(nephtys::common ALIAS nephtys-common)

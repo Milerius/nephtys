@@ -8,6 +8,7 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <loguru.hpp>
+#include <nephtys/utils/pretty_function.hpp>
 
 namespace nephtys::utils
 {
@@ -71,7 +72,7 @@ namespace nephtys::utils
     template<typename TConfig>
     TConfig load_configuration(std::filesystem::path &&config_path, std::string filename) noexcept
     {
-        VLOG_SCOPE_F(loguru::Verbosity_INFO, __FUNCTION__);
+        VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
         const auto &full_path = config_path / std::move(filename);
         DVLOG_F(loguru::Verbosity_INFO, "path to nephtys configuration -> %s", full_path.string().c_str());
         if (!std::filesystem::exists(config_path)) {
