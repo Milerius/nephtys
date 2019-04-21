@@ -215,6 +215,7 @@ matrix:
       cache:
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
 
     - os: linux
       language: python
@@ -235,6 +236,7 @@ matrix:
       cache:
         directories:
           - $HOME/.conan/data
+          - $HOME/.cache/pip
 
     - os: osx
       osx_image: xcode10.2
