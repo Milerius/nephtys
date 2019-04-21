@@ -236,6 +236,71 @@ matrix:
           - $HOME/.conan/data
           - $HOME/.cache/pip
 
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      services:
+        - xvfb
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-8 main
+            - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages: [clang-8, libstdc++-8-dev, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
+      env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, PIP=pip, ASAN=ON]
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
+
+
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      services:
+        - xvfb
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-8 main
+            - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages: [clang-8, libstdc++-8-dev, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
+      env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, PIP=pip, TSAN=ON]
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
+
+
+    - os: linux
+      language: python
+      python: 3.7
+      sudo: true
+      dist: xenial
+      services:
+        - xvfb
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-8 main
+            - sourceline: 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+              key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages: [clang-8, libstdc++-8-dev, libxrandr-dev, libudev-dev, libgl1-mesa-dev]
+      env: [CXX=clang++-8, CC=clang-8, CONAN_COMPILER_VERSION=8, BUILD_TYPE=Debug, DEFAULT_COMPILER=clang, WILL_COMPILE_CODE=ON, PIP=pip, UBSAN=ON]
+      cache:
+        directories:
+          - $HOME/.conan/data
+          - $HOME/.cache/pip
+
     - os: osx
       osx_image: xcode10.2
       sudo: true
