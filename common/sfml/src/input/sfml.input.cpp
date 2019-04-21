@@ -8,6 +8,5 @@ namespace nephtys::sfml
 {
     input::input(sf::RenderWindow &win) noexcept : win_(win)
     {
-
     }
 }
