@@ -55,4 +55,4 @@ on_finish:
       $string = $string -replace ' ', '-'
       echo $string
       Invoke-WebRequest -Uri https://report.ci/upload.py -OutFile upload.py
-      python upload.py -n "Doctest [appveyor $($string)]"
+      python upload.py -n "Doctest [appveyor $($string)]" --merge .*
