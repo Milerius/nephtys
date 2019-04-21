@@ -14,6 +14,11 @@ namespace nephtys::sfml
     public:
         explicit graphics(window::win_cfg &win_cfg) noexcept;
 
+        const sf::RenderWindow &get_win() const noexcept;
+
+        sf::RenderWindow &get_win() noexcept;
+
+
     private:
         [[maybe_unused]] window::win_cfg &win_cfg_;
         [[maybe_unused]] sf::RenderWindow win_;

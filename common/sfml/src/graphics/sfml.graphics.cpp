@@ -11,4 +11,14 @@ namespace nephtys::sfml
             win_{sf::VideoMode(win_cfg.width.value(), win_cfg.height.value()), win_cfg_.title}
     {
     }
+
+    const sf::RenderWindow &graphics::get_win() const noexcept
+    {
+        return win_;
+    }
+
+    sf::RenderWindow &graphics::get_win() noexcept
+    {
+        return win_;
+    }
 }

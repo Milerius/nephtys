@@ -25,7 +25,7 @@ target_enable_ubsan(nephtys_client_shared_deps)
 ################################### nephtys_client
 add_executable(nephtys_client)
 target_sources(nephtys_client PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
-target_link_libraries(nephtys_client PUBLIC nephtys_client_shared_deps nephtys::sfml-graphics)
+target_link_libraries(nephtys_client PUBLIC nephtys_client_shared_deps nephtys::sfml)
 if (LINUX)
     get_target_property(nephtys_client_runtime_directory nephtys_client RUNTIME_OUTPUT_DIRECTORY)
     set_target_properties(nephtys_client PROPERTIES
