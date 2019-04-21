@@ -18,7 +18,7 @@ namespace nephtys::client
         world() noexcept;
 
     private:
-        /* TODO: Add real path function cross platform to get the asset path
+        /* @todo Add real path function cross platform to get the asset path
          * @body We should detect platform and then assign a default asset path
          */
         config cfg_;
