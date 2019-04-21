@@ -72,7 +72,7 @@ function upload_test() {
     cd ${TRAVIS_BUILD_DIR}/cmake-build-${BUILD_TYPE}/bin
     doctest_upload_name+=']'
     echo "uploading doctest: ${doctest_upload_name}"
-    curl https://report.ci/upload.py --output upload.py && python upload.py -n "${doctest_upload_name}" --merge .*
+    curl https://report.ci/upload.py --output upload.py && python upload.py -n "${doctest_upload_name}"
 }
 
 if [[ "${NEPHTYS_BUILD_DOCUMENTATION}" == "ON" ]]; then build_doc || travis_terminate 1; fi
