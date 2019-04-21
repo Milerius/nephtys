@@ -2,6 +2,8 @@
 // Created by sztergbaum roman on 2019-04-20.
 //
 
+#include <loguru.hpp>
+#include <nephtys/utils/pretty_function.hpp>
 #include <nephtys/timer/timestep.hpp>
 
 namespace nephtys::timer
@@ -31,5 +33,10 @@ namespace nephtys::timer
     st::delta_time time_step::get_fixed_delta_time() const noexcept
     {
         return fixed_delta_time;
+    }
+
+    time_step::time_step() noexcept
+    {
+        VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
     }
 }
