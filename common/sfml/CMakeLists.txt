@@ -23,6 +23,10 @@ target_sources(nephtys-sfml-graphics-test PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/test/test.sfml.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/sfml.graphics.test.cpp)
 target_link_libraries(nephtys-sfml-graphics-test PUBLIC CONAN_PKG::doctest nephtys::sfml::graphics)
+target_enable_asan(nephtys-sfml-graphics-test)
+target_enable_ubsan(nephtys-sfml-graphics-test)
+target_enable_tsan(nephtys-sfml-graphics-test)
+target_enable_coverage(nephtys-sfml-graphics-test)
 
 ##! Input
 add_library(nephtys-sfml-input-shared-deps INTERFACE)
@@ -36,6 +40,10 @@ target_sources(nephtys-sfml-input-test PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/test/test.sfml.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/input/sfml.input.test.cpp)
 target_link_libraries(nephtys-sfml-input-test PUBLIC CONAN_PKG::doctest nephtys::sfml::input)
+target_enable_asan(nephtys-sfml-input-test)
+target_enable_ubsan(nephtys-sfml-input-test)
+target_enable_tsan(nephtys-sfml-input-test)
+target_enable_coverage(nephtys-sfml-input-test)
 
 ##! All SFML Libraries
 add_library(nephtys-sfml INTERFACE)
