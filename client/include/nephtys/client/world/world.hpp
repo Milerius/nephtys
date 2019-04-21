@@ -18,7 +18,9 @@ namespace nephtys::client
         world() noexcept;
 
     private:
-        // TODO: Add real path function cross platform to get the asset path
+        /* TODO: Add real path function cross platform to get the asset path
+         * @body We should detect platform and then assign a default asset path
+         */
         config cfg_;
         nephtys::timer::time_step timestep_;
         nephtys::sfml::graphics graphical_system_{cfg_.window};
