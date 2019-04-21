@@ -4,7 +4,7 @@ function init() {
     root_dir=$(pwd)
     mkdir deploy_osx
     cd /tmp && rm -rf release_osx && mkdir release_osx && cd release_osx
-    conan install ${root_dir}
+    conan install ${root_dir}/.conan/osx
     cmake -DCMAKE_BUILD_TYPE=Release ${root_dir}
 }
 
