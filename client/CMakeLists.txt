@@ -14,7 +14,7 @@ target_link_libraries(nephtys_client_shared_deps INTERFACE
 target_sources(nephtys_client_shared_deps INTERFACE
         ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/world/world.cpp
-        $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/app_image_real_path.cpp>)
+        $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/real_path.cpp>)
 
 target_include_directories(nephtys_client_shared_deps INTERFACE
         ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -61,7 +61,7 @@ target_sources(nephtys-client-test PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/test/test.client.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/world/world.test.cpp
-        $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/app_image_real_path.test.cpp>
+        $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/real_path.test.cpp>
         )
 target_link_libraries(nephtys-client-test PRIVATE CONAN_PKG::doctest PUBLIC nephtys_client_shared_deps)
 target_enable_coverage(nephtys-client-test)
