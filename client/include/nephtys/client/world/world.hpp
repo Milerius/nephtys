@@ -24,9 +24,9 @@ namespace nephtys::client
 
         void receive(const event::quit_app &evt) noexcept;
 
-        inline void run_once() noexcept;
+        void run_once() noexcept;
 
-        inline st::exit_code run() noexcept;
+        st::exit_code run() noexcept;
 
     private:
         st::exit_code exit_code_{0};
