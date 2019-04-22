@@ -2,9 +2,7 @@
 // Created by milerius on 05/04/19.
 //
 
-#include <doctest.h>
 #include <nephtys/utils/config.hpp>
-#include <nephtys/client/config/config.hpp>
 
 namespace nephtys::client
 {
