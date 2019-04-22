@@ -8,7 +8,7 @@
 #include <nephtys/utils/pretty_function.hpp>
 #include <nephtys/resources/details/windows/real_path.hpp>
 
-namespace nephtys::client::details
+namespace nephtys::resources::details
 {
     std::filesystem::path binary_real_path() noexcept
     {

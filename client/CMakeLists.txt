@@ -1,3 +1,12 @@
+##! copy directory
+if (APPLE)
+    file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/../Resources/)
+elseif (LINUX)
+    file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/../share/)
+else ()
+    file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/)
+endif ()
+
 ################################### nephtys_client_shared_deps
 add_library(nephtys_client_shared_deps INTERFACE)
 target_compile_features(nephtys_client_shared_deps INTERFACE cxx_std_17)

@@ -8,6 +8,7 @@
 #include <nephtys/client/config/config.hpp>
 #include <nephtys/graphics/sfml.graphics.hpp>
 #include <nephtys/input/sfml.input.hpp>
+#include <nephtys/resources/real_path.hpp>
 #include <nephtys/timer/timestep.hpp>
 
 namespace nephtys::client
@@ -18,10 +19,8 @@ namespace nephtys::client
         world() noexcept;
 
     private:
-        /* @todo Add real path function cross platform to get the asset path
-         * @body We should detect platform and then assign a default asset path
-         */
-        config cfg_;
+        std::filesystem::path assets_path_{nephtys::resources::assets_real_path()};
+        config cfg_{nephtys::utils::load_configuration<config>(assets_path_ / "config", "game_config.json")};
         nephtys::timer::time_step timestep_;
         nephtys::sfml::graphics graphical_system_{cfg_.window};
         nephtys::sfml::input input_system_{graphical_system_.get_win()};
