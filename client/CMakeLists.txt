@@ -21,13 +21,9 @@ target_link_libraries(nephtys_client_shared_deps INTERFACE
         nephtys::sfml
         $<$<CXX_COMPILER_ID:GNU>:-static-libstdc++>)
 
-target_sources(nephtys_client_shared_deps INTERFACE
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/world/world.cpp
-        )
-
 target_include_directories(nephtys_client_shared_deps INTERFACE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include)
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        )
 
 
 target_enable_asan(nephtys_client_shared_deps)
@@ -69,8 +65,6 @@ endif ()
 add_executable(nephtys-client-test)
 target_sources(nephtys-client-test PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/test/test.client.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config.test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/world/world.test.cpp
         )
 target_link_libraries(nephtys-client-test PRIVATE CONAN_PKG::doctest PUBLIC nephtys_client_shared_deps)
 target_enable_coverage(nephtys-client-test)
