@@ -15,7 +15,7 @@
 namespace nephtys::resources::details
 {
     static std::string &replace_all_mute(std::string &s,
-                                         const std::string from, const std::string &to) noexcept
+                                         const std::string &from, const std::string &to) noexcept
     {
         if (!from.empty())
             for (std::size_t pos = 0; (pos = s.find(from, pos) + 1); pos += to.size())
@@ -24,7 +24,7 @@ namespace nephtys::resources::details
     }
 
     static std::string replace_all_copy(std::string s,
-                                        const std::string from, const std::string &to) noexcept
+                                        const std::string &from, const std::string &to) noexcept
     {
         return replace_all_mute(s, from, to);
     }
