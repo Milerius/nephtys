@@ -10,5 +10,6 @@ namespace nephtys::client
     TEST_CASE ("client world constructor")
     {
         world world;
+        world.receive(event::quit_app{});
     }
 }

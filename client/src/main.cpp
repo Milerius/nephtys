@@ -13,5 +13,5 @@ int main()
     VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
 
     nephtys::client::world world;
-    return 0;
+    return world.run().value();
 }
