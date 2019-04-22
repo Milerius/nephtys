@@ -86,6 +86,25 @@ macro(init_env)
         ##! For user that's install llvm through brew.
         link_directories("/usr/local/opt/llvm/lib")
     endif ()
+    if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+        set(nephtys_compiler clang)
+    elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+        set(nephtys_compiler gcc)
+    elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+        set(nephtys_compiler msvc)
+    endif()
+endmacro()
+
+macro(nephtys_split_version VERSION_STRING MAJOR MINOR)
+    #make a list from the version string
+    string(REPLACE "." ";" VERSION_LIST "${VERSION_STRING}")
+
+    #write output values
+    list(LENGTH VERSION_LIST _version_len)
+    list(GET VERSION_LIST 0 ${MAJOR})
+    if(${_version_len} GREATER 1)
+        list(GET VERSION_LIST 1 ${MINOR})
+    endif()
 endmacro()
 
 macro(exec_conan)
@@ -103,7 +122,8 @@ macro(exec_conan)
                         RESULT_VARIABLE CMD_ERROR
                         OUTPUT_FILE CMD_OUTPUT)
             elseif (LINUX)
-                execute_process(COMMAND conan install --build missing ../.conan/linux
+                nephtys_split_version(${CMAKE_CXX_COMPILER_VERSION} VERSION_MAJOR VERSION_MINOR)
+                execute_process(COMMAND conan install --build missing ../.conan/linux -s compiler=${nephtys_compiler} -s compiler.version=${VERSION_MAJOR} -s compiler.libcxx=libstdc++11
                         RESULT_VARIABLE CMD_ERROR
                         OUTPUT_FILE CMD_OUTPUT)
             else ()
