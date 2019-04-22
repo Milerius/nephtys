@@ -2,8 +2,7 @@
 // Created by milerius on 06/04/19.
 //
 
-#include <WinBase.h> // GetLastError
-#include <libloaderapi.h> //! GetModuleHandleW, GetModuleFileNameW
+#include <windows.h>
 #include <string>
 #include <loguru.hpp>
 #include <nephtys/utils/pretty_function.hpp>
