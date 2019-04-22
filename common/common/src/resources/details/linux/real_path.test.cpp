@@ -3,18 +3,19 @@
 //
 
 #include <doctest.h>
+#include <loguru.hpp>
 #include <nephtys/resources/details/linux/real_path.hpp>
 
 TEST_CASE ("binary_real_path not empty")
 {
-      auto result = nephtys::client::details::binary_real_path().string();
-      MESSAGE("binary real path: " + result);
+  auto result = nephtys::client::details::binary_real_path().string();
+  DVLOG_F(loguru::Verbosity_INFO, "binary path: %s", result.c_str());
       CHECK_FALSE(nephtys::client::details::binary_real_path().string().empty());
 }
 
 TEST_CASE ("asset_path not empty")
 {
-      auto result = nephtys::client::details::assets_real_path().string();
-      MESSAGE("asset path: " + result);
+  auto result = nephtys::client::details::assets_real_path().string();
+  DVLOG_F(loguru::Verbosity_INFO, "assets path: %s", result.c_str());
       CHECK_FALSE(result.empty());
 }
