@@ -16,6 +16,7 @@ add_library(nephtys::timer ALIAS nephtys-timer)
 add_library(nephtys-resources INTERFACE)
 target_link_libraries(nephtys-resources INTERFACE nephtys::common)
 target_sources(nephtys-resources INTERFACE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/real_path.cpp
         $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/real_path.cpp>
         $<$<PLATFORM_ID:Darwin>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/osx/real_path.cpp>
         $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/windows/real_path.cpp>)
@@ -25,6 +26,7 @@ add_executable(nephtys-common-test)
 target_sources(nephtys-common-test PRIVATE
         src/version.test.cpp test/test.common.cpp
         src/timer/timestep.test.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/real_path.test.cpp
         $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/real_path.test.cpp>
         $<$<PLATFORM_ID:Darwin>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/osx/real_path.test.cpp>
         $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/windows/real_path.test.cpp>)

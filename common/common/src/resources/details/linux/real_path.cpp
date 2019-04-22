@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <nephtys/resources/details/linux/real_path.hpp>
 
-namespace nephtys::client::details
+namespace nephtys::resources::details
 {
     std::filesystem::path binary_real_path() noexcept
     {

@@ -48,6 +48,7 @@ namespace nephtys::utils
             nlohmann::json config_json_data;
             ifs >> config_json_data;
             config_to_fill = config_json_data;
+            DVLOG_F(loguru::Verbosity_INFO, "config loaded content: [%s]", config_json_data.dump().c_str());
             return config_to_fill;
         }
     }
