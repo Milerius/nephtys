@@ -23,6 +23,6 @@ namespace nephtys::client::details
 
     std::filesystem::path assets_real_path() noexcept
     {
-      return binary_real_path();
+      return binary_real_path().parent_path() / "assets";
     }
 }
