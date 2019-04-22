@@ -12,6 +12,7 @@
 #include <nephtys/input/sfml.input.hpp>
 #include <nephtys/resources/real_path.hpp>
 #include <nephtys/timer/timestep.hpp>
+#include <nephtys/strong_types/exit_code.hpp>
 #include <nephtys/event/quit_app.hpp>
 
 namespace nephtys::client
