@@ -48,14 +48,14 @@ namespace nephtys::client
                     AND_WHEN ("we load the configuration from a non root directory") {
                         THEN("we create a default configuration in the given path and we got a default configuration") {
                             REQUIRE_EQ(
-                            utils::load_configuration<client::config>(std::filesystem::current_path() / "assets/config",
+                            utils::load_configuration<client::config>(std::filesystem::current_path() / "my_assets/config",
                                                                       "nephtys_client.config.json"), config{});
                             REQUIRE(std::filesystem::exists(
-                            std::filesystem::current_path() / "assets/config/nephtys_client.config.json"));
+                            std::filesystem::current_path() / "my_assets/config/nephtys_client.config.json"));
                 }
                         AND_THEN("We clear the directory that we create for this test") {
-                    std::filesystem::remove_all(std::filesystem::current_path() / "assets");
-                            REQUIRE_FALSE(std::filesystem::exists(std::filesystem::current_path() / "assets"));
+                    std::filesystem::remove_all(std::filesystem::current_path() / "my_assets");
+                            REQUIRE_FALSE(std::filesystem::exists(std::filesystem::current_path() / "my_assets"));
                 }
             }
         }
