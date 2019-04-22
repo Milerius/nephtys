@@ -19,7 +19,7 @@ namespace nephtys::utils
                                      const std::filesystem::path &full_path) noexcept
         {
             TConfig config_to_export{};
-            VLOG_SCOPE_F(loguru::Verbosity_INFO, __FUNCTION__);
+            VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
             DVLOG_F(loguru::Verbosity_WARNING,
                     "path to nephtys configuration doesn't exist, creating directories + configuration for you");
             std::error_code ec;
@@ -42,7 +42,7 @@ namespace nephtys::utils
         TConfig load_config(const std::filesystem::path &full_path) noexcept
         {
             TConfig config_to_fill{};
-            VLOG_SCOPE_F(loguru::Verbosity_INFO, __FUNCTION__);
+            VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
             std::ifstream ifs(full_path);
             DCHECK_F(ifs.is_open(), "Failed to open: [%s]", full_path.string().c_str());
             nlohmann::json config_json_data;
