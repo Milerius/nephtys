@@ -4,7 +4,7 @@
 
 #include <doctest.h>
 #include <loguru.hpp>
-#include <nephtys/resources/details/osx/real_path.hpp>
+#include <nephtys/resources/details/windows/real_path.hpp>
 
 TEST_CASE ("binary_real_path not empty")
 {
