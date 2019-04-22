@@ -3,6 +3,7 @@
 //
 
 #include <doctest.h>
+#include <entt/signal/dispatcher.hpp>
 #include <nephtys/graphics/sfml.graphics.hpp>
 #include <nephtys/input/sfml.input.hpp>
 
@@ -13,6 +14,7 @@ namespace nephtys::sfml
         nephtys::window::win_cfg cfg;
         nephtys::sfml::graphics graphical_system{cfg};
                 REQUIRE_NE(std::addressof(graphical_system.get_win()), nullptr);
-        nephtys::sfml::input input_system{graphical_system.get_win()};
+        entt::dispatcher dispatcher;
+        nephtys::sfml::input input_system{graphical_system.get_win(), dispatcher};
     }
 }
