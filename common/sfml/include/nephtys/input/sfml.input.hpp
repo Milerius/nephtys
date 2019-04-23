@@ -17,7 +17,7 @@ namespace nephtys::sfml
         void update() noexcept;
 
     private:
-        [[maybe_unused]] sf::RenderWindow &win_;
+        sf::RenderWindow &win_;
         entt::dispatcher &dispatcher_;
     };
 }
