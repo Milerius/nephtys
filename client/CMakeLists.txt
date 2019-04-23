@@ -68,3 +68,4 @@ target_sources(nephtys-client-test PUBLIC
         )
 target_link_libraries(nephtys-client-test PRIVATE CONAN_PKG::doctest PUBLIC nephtys_client_shared_deps)
 target_enable_coverage(nephtys-client-test)
+target_ipo(nephtys_client)
