@@ -3,6 +3,7 @@
 //
 
 #include <loguru.hpp>
+#include <entt/entity/entt_traits.hpp>
 #include <nephtys/utils/pretty_function.hpp>
 #include <nephtys/components/layer.hpp>
 #include <nephtys/graphics/sfml.graphics.hpp>
@@ -40,7 +41,9 @@ namespace nephtys::sfml
     void graphics::draw() noexcept
     {
       entity_registry_.view<DrawableType, nephtys::components::layer<Layer>>().each(
-          [this]([[maybe_unused]] auto entity, auto &&drawable, [[maybe_unused]] auto &&layer) {
+          [this]([[maybe_unused]] entt::registry<>::entity_type entity,
+                 const DrawableType &drawable,
+                 [[maybe_unused]] const nephtys::components::layer<Layer> &layer) {
               this->win_.draw(drawable.drawable);
           });
     }
