@@ -41,7 +41,6 @@ add_library(default_settings INTERFACE)
 add_library(nephtys::default_settings ALIAS default_settings)
 target_link_libraries(default_settings INTERFACE nephtys::error_settings nephtys::optimize_settings nephtys::defaults_features)
 
-
 add_library(noesis SHARED IMPORTED)
 if (APPLE)
     set_target_properties(noesis PROPERTIES
@@ -58,3 +57,13 @@ else ()
             IMPORTED_GLOBAL TRUE)
 endif ()
 add_library(nephtys::noesis ALIAS noesis)
+
+
+##! Doom meta
+include(FetchContent)
+FetchContent_Declare(
+        doom_meta
+        GIT_REPOSITORY https://github.com/doom/meta.git
+        GIT_TAG 1.0.1
+)
+FetchContent_MakeAvailable(doom_meta)

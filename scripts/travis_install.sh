@@ -28,7 +28,7 @@ function conan_setup() {
 function last_cmake_linux() {
           DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
           mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
-          CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.0-Linux-x86_64.tar.gz"
+          CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.3-Linux-x86_64.tar.gz"
           mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
           export PATH=${DEPS_DIR}/cmake/bin:${PATH}
           cd -

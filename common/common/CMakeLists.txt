@@ -2,6 +2,7 @@ add_library(nephtys-common INTERFACE)
 target_include_directories(nephtys-common INTERFACE include)
 target_link_libraries(nephtys-common INTERFACE
         CONAN_PKG::doom_strong_types
+        doom::meta
         nephtys::loguru
         $<$<AND:$<PLATFORM_ID:Linux>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
         $<$<PLATFORM_ID:Darwin>:c++fs>)
