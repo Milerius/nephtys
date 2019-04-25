@@ -23,7 +23,7 @@ extraction:
       - mkdir -p $LGTM_WORKSPACE/cmake
       - cd $LGTM_WORKSPACE/cmake
       - CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.3-Linux-x86_64.tar.gz"
-      - mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+      - mkdir cmake && wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       - export PATH=$LGTM_WORKSPACE/cmake/bin:${PATH}
       - cd -
       - mkdir $LGTM_SRC/_lgtm_build_dir
