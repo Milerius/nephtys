@@ -16,7 +16,7 @@ init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - where cmake
   - ps: Invoke-WebRequest -Uri https://cmake.org/files/v3.14/cmake-3.14.3-win64-x64.zip -OutFile cmake.zip
-  - 7z x cmake.zip -oc:\Program Files (x86)\CMake\ -aoa
+  - 7z e cmake.zip -oc:\Program Files (x86)\CMake\ -aoa
   - cmake --version
   - msbuild /version
 
