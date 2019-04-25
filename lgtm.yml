@@ -20,19 +20,10 @@ extraction:
       - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan False
       - conan remote add conan-doom_strong_types https://api.bintray.com/conan/milerius/doom_strong_types False
       - conan remote add skypjack https://api.bintray.com/conan/skypjack/conan False
-      - mkdir -p $LGTM_WORKSPACE/cmake
-      - cd $LGTM_WORKSPACE/cmake
-      - CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.3-Linux-x86_64.tar.gz"
-      - mkdir cmake && wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
-      - export PATH=$LGTM_WORKSPACE/cmake/bin:${PATH}
+      - mkdir $LGTM_SRC/_lgtm_build_dir
+      - cd $LGTM_SRC/_lgtm_build_dir
+      - conan install -g cmake ../.conan/linux
       - cd -
-    index:
-      build_command:
-        - mkdir $LGTM_SRC/_lgtm_build_dir
-        - cd $LGTM_SRC/_lgtm_build_dir
-        - conan install -g cmake ../.conan/linux
-        - cmake -DCMAKE_BUILD_TYPE=Debug ../
-
 
 
 path_classifiers:
