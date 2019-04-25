@@ -11,6 +11,7 @@
 
 namespace nephtys::sfml::components
 {
+    // LCOV_EXCL_START
     struct sprite
     {
         sf::Sprite drawable;
@@ -25,6 +26,7 @@ namespace nephtys::sfml::components
     {
         sf::Text drawable;
     };
+    // LCOV_EXCL_STOP
 
     using drawable_list = meta::list<sprite, circle, text>;
 }
