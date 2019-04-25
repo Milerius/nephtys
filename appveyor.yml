@@ -18,7 +18,7 @@ init:
   - ps: Invoke-WebRequest -Uri https://cmake.org/files/v3.14/cmake-3.14.3-win64-x64.zip -OutFile cmake.zip
   - 7z x cmake.zip -o"c:\Program Files (x86)\CMake\" -y
   - ps: Get-ChildItem "C:\Program Files (x86)\CMake\"
-  - ps: Move-Item -Path "C:\Program Files (x86)\CMake\cmake-3.14.3-win64-x64\*" -Destination "C:\Program Files (x86)\CMake\"
+  - ps: Move-Item -Path "C:\Program Files (x86)\CMake\cmake-3.14.3-win64-x64\*" -Destination "C:\Program Files (x86)\CMake\" -Force
   - ps: Get-ChildItem "C:\Program Files (x86)\CMake\"
   - rm cmake.zip
   - cmake --version
