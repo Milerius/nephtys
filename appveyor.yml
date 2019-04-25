@@ -19,7 +19,7 @@ init:
   - 7z x cmake.zip -o"c:\Program Files (x86)\CMake\" -y
   - ps: Get-ChildItem "C:\Program Files (x86)\CMake\"
   - ps: Get-ChildItem "C:\Program Files (x86)\CMake\cmake-3.14.3-win64-x64\"
-  - ps: Move-Item -Path "C:\Program Files (x86)\CMake\cmake-3.14.3-win64-x64\*" -Destination "C:\Program Files (x86)\CMake\" -Force -Recurse
+  - ps: Copy-Item -Path "C:\Program Files (x86)\CMake\cmake-3.14.3-win64-x64\*" -Destination "C:\Program Files (x86)\CMake\" -Force -Recurse
   - ps: Get-ChildItem "C:\Program Files (x86)\CMake\"
   - ps: Get-ChildItem "C:\Program Files (x86)\CMake\cmake-3.14.3-win64-x64\"
   - rm cmake.zip
