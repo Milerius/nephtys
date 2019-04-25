@@ -17,7 +17,7 @@ init:
   - where cmake
   - ps: Invoke-WebRequest -Uri https://cmake.org/files/v3.14/cmake-3.14.3-win64-x64.zip -OutFile cmake.zip
   - ps: Get-ChildItem "C:\Program Files (x86)\CMake\"
-  - 7z e cmake.zip -o"c:\Program Files (x86)\CMake\" -y
+  - 7z x cmake.zip -o"c:\Program Files (x86)\CMake\" -y
   - ps: Get-ChildItem "C:\Program Files (x86)\CMake\"
   - rm cmake.zip
   - cmake --version
