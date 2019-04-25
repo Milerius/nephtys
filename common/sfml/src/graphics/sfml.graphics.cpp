@@ -41,9 +41,9 @@ namespace nephtys::sfml
     void graphics::draw() noexcept
     {
       entity_registry_.view<DrawableType, nephtys::components::layer<Layer>>().each(
-          [this]([[maybe_unused]] auto entity,
+          [this]([[maybe_unused]] auto,
                  auto &&drawable,
-                 [[maybe_unused]] auto &&layer) {
+                 [[maybe_unused]] auto &&) {
               this->win_.draw(drawable.drawable);
           });
     }
