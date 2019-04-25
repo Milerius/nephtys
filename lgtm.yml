@@ -32,6 +32,7 @@ extraction:
       - cd -
     index:
       build_command:
+        - cd $LGTM_SRC/_lgtm_build_dir
         - cmake -DCMAKE_BUILD_TYPE=Debug ../
 
 
