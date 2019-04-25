@@ -59,7 +59,7 @@ namespace nephtys::client
         entt::dispatcher dispatcher_;
         entt::registry<> entity_registry_{};
         nephtys::timer::time_step timestep_;
-        nephtys::sfml::graphics graphical_system_{cfg_.window};
+        nephtys::sfml::graphics graphical_system_{cfg_.window, entity_registry_};
         nephtys::sfml::input input_system_{graphical_system_.get_win(), dispatcher_};
     };
 }

@@ -10,10 +10,12 @@ namespace nephtys::sfml
 {
     TEST_CASE ("sfml graphics constructor")
     {
-        nephtys::window::win_cfg cfg;
-        nephtys::sfml::graphics graphical_system{cfg};
-                REQUIRE_NE(std::addressof(graphical_system.get_win()), nullptr);
-        const nephtys::sfml::graphics cst_graphical_system{cfg};
-                REQUIRE_NE(std::addressof(cst_graphical_system.get_win()), nullptr);
+      entt::registry<> entity_registry;
+      nephtys::window::win_cfg cfg;
+      nephtys::sfml::graphics graphical_system{cfg, entity_registry};
+          REQUIRE_NE(std::addressof(graphical_system.get_win()), nullptr);
+      const nephtys::sfml::graphics cst_graphical_system{cfg, entity_registry};
+          REQUIRE_NE(std::addressof(cst_graphical_system.get_win()), nullptr);
+      graphical_system.update();
     }
 }
