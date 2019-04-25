@@ -26,13 +26,11 @@ extraction:
       - mkdir cmake && wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       - export PATH=$LGTM_WORKSPACE/cmake/bin:${PATH}
       - cd -
-      - mkdir $LGTM_SRC/_lgtm_build_dir
-      - cd $LGTM_SRC/_lgtm_build_dir
-      - conan install -g cmake ../.conan/linux
-      - cd -
     index:
       build_command:
+        - mkdir $LGTM_SRC/_lgtm_build_dir
         - cd $LGTM_SRC/_lgtm_build_dir
+        - conan install -g cmake ../.conan/linux
         - cmake -DCMAKE_BUILD_TYPE=Debug ../
 
 
