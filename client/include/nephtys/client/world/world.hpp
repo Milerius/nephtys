@@ -40,7 +40,7 @@ namespace nephtys::client
           timestep_.start_frame();
           input_system_.update();
           while (timestep_.is_update_required()) {
-            graphical_system_.updareboote();
+            graphical_system_.update();
             timestep_.perform_update();
           }
         }
