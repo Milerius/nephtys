@@ -96,7 +96,7 @@ See also the list of [contributors](./CONTRIBUTORS.md) who participated in this 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## Acknowledgments
 
