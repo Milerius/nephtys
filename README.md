@@ -1,5 +1,3 @@
-# nephtys
-
 | Badges                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Travis (Linux/Osx)       | [![Build Status](https://travis-ci.org/Milerius/nephtys.svg?branch=master)](https://travis-ci.org/Milerius/nephtys)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -26,15 +24,17 @@
 Nephtys is an open-source **MMORPG** based on ancient egypt written in modern C++.
 This is a `Dofus` like 2.5D, strategic and turn based.
 
-### Prerequisites
+## Prerequisites
 
 Below is the list of prerequisites to compile `Nephtys` on your machine:
 
-- [Conan](https://conan.io/downloads.html) 1.14.1 minimum
-- [CMake](https://cmake.org/download/) 3.12 minimum
-- gcc-8 or clang-8 or msvc15-2017 minimum
+-  [Conan](https://conan.io/downloads.html) 1.14.1 minimum
+-  [CMake](https://cmake.org/download/) 3.12 minimum
+-  gcc-8 or clang-8 or msvc15-2017 minimum
 
 ## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Add remotes
 
@@ -67,12 +67,12 @@ cmake --build . --config Release
 
 ## Built With
 
-* [SFML](https://www.sfml-dev.org/index-fr.php) - Game framework used
-* [nlohmann::json](https://github.com/nlohmann/json) - Json framework used
-* [EnTT](https://github.com/skypjack/entt) - ECS framework used.
-* [doom::strong_type](https://github.com/doom/strong_type) - C++ strong type library
-* [doom::meta](https://github.com/doom/meta) - C++ metaprogramming utilities
-* [doctest](https://github.com/onqtam/doctest) - Testing framework used
+-  [SFML](https://www.sfml-dev.org/index-fr.php) - Game framework used
+-  [nlohmann::json](https://github.com/nlohmann/json) - Json framework used
+-  [EnTT](https://github.com/skypjack/entt) - ECS framework used.
+-  [doom::strong_type](https://github.com/doom/strong_type) - C++ strong type library
+-  [doom::meta](https://github.com/doom/meta) - C++ metaprogramming utilities
+-  [doctest](https://github.com/onqtam/doctest) - Testing framework used
 
 ## Code of Conduct
 
@@ -100,9 +100,9 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## Acknowledgments
 
-* Viktor Kirilov [onqtam](https://github.com/onqtam) for the awesome `doctest` framework.
-* Michele Caini [skypjack](https://github.com/skypjack) for permanent help and explanations and `EnTT`
-* Ithare (http://ithare.com/real-people-behind-the-hare/) blogger for awesome game design tutorial.
+-  Viktor Kirilov [onqtam](https://github.com/onqtam) for the awesome `doctest` framework.
+-  Michele Caini [skypjack](https://github.com/skypjack) for permanent help and explanations and `EnTT`
+-  Ithare (http://ithare.com/real-people-behind-the-hare/) blogger for awesome game design tutorial.
 
 [issues_bdg]: https://img.shields.io/github/issues/milerius/nephtys.svg
 
