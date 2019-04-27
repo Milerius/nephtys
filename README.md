@@ -22,7 +22,7 @@
 # Nephtys
 
 Nephtys is an open-source **MMORPG** based on ancient egypt written in modern C++.
-Nephtys is 2.5D isometric game with strategic and turn based oriented battle system.
+Nephtys is a 2.5D isometric game with strategic and turn-based oriented battle system.
 
 ## Prerequisites
 
