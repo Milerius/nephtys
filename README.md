@@ -101,7 +101,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 ## Acknowledgments
 
 -   Viktor Kirilov [onqtam](https://github.com/onqtam) for the awesome `doctest` framework.
--   Michele Caini [skypjack](https://github.com/skypjack) for permanent help and explanations and `EnTT`
+-   Michele Caini [skypjack](https://github.com/skypjack) for permanent help and explanations and `EnTT`.
 -   Ithare (<http://ithare.com/real-people-behind-the-hare/>) blogger for awesome game design tutorial.
 
 [issues_bdg]: https://img.shields.io/github/issues/milerius/nephtys.svg
