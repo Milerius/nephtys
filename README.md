@@ -21,6 +21,89 @@
 | Line of Code             | [![](https://tokei.rs/b1/github/milerius/nephtys)](https://github.com/milerius/nephtys) |
 | Conventional Commit      | [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org) |
 
+# Nephtys
+
+Nephtys is an open-source **MMORPG** based on ancient egypt written in modern C++.
+This is a `Dofus` like 2.5D, strategic and turn based.
+
+### Prerequisites
+
+Below is the list of prerequisites to compile `Nephtys` on your machine:
+
+- [Conan](https://conan.io/downloads.html) 1.14.1 minimum
+- [CMake](https://cmake.org/download/) 3.12 minimum
+- gcc-8 or clang-8 or msvc15-2017 minimum
+
+## Getting Started
+
+### Add remotes
+
+To be able to add the list of nephtys dependency remotes please type the following command:
+
+`conan config install .conan/remotes/
+
+### Build
+
+To build the project please follow the instructions below:
+
+```bash
+mkdir build ## bash or powershell
+cd build ## bash or powershell
+conan install --build missing ../.conan/linux ## osx or windows or linux
+cmake --build . --config Release
+```
+
+### Installing
+
+:construction:
+
+## Running the tests
+
+:construction:
+
+## Deployment
+
+:construction:
+
+## Built With
+
+* [SFML](https://www.sfml-dev.org/index-fr.php) - Game framework used
+* [nlohmann::json](https://github.com/nlohmann/json) - Json framework used
+* [EnTT](https://github.com/skypjack/entt) - ECS framework used.
+* [doom::strong_type](https://github.com/doom/strong_type) - C++ strong type library
+* [doom::meta](https://github.com/doom/meta) - C++ metaprogramming utilities
+* [doctest](https://github.com/onqtam/doctest) - Testing framework used
+
+## Code of Conduct
+
+Before any contribution please read our [CODE OF CONDUCT](./CODE-OF-CONDUCT.md).
+
+## Contributing
+
+Please read [CONTRIBUTING.md](./CONTRIBUTING.md), contain the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/milerius/nephtys/tags). 
+
+## Authors
+
+* **Roman Sztergbaum** - *Co-Creator* - [Milerius](https://github.com/Milerius)
+* **Clément Doumergue** - *Co-Creator* - [Doom](https://github.com/doom)
+* **Arthur Cros** - *Co-Creator* - [Riz-cros](https://github.com/Riz-cros)
+
+See also the list of [contributors](./CONTRIBUTORS.md) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
+
+## Acknowledgments
+
+* Viktor Kirilov [onqtam](https://github.com/onqtam) for the awesome `doctest` framework.
+* Michele Caini [skypjack](https://github.com/skypjack) for permanent help and explanations and `EnTT`
+* Ithare (http://ithare.com/real-people-behind-the-hare/) blogger for awesome game design tutorial.
+
 [issues_bdg]: https://img.shields.io/github/issues/milerius/nephtys.svg
 
 [license_bdg]: https://img.shields.io/github/license/milerius/nephtys.svg
