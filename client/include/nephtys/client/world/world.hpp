@@ -44,11 +44,11 @@ namespace nephtys::client
         // LCOV_EXCL_START
         inline void run_once() noexcept
         {
-            timestep_.start_frame();
+            time_step_.start_frame();
             input_system_.update();
-            while (timestep_.is_update_required()) {
+            while (time_step_.is_update_required()) {
                 scenes_manager_.update();
-                timestep_.perform_update();
+                time_step_.perform_update();
             }
             graphical_system_.update(scenes_manager_.get_registry());
         }
@@ -56,7 +56,7 @@ namespace nephtys::client
         inline st::exit_code run() noexcept
         {
             is_running_ = true;
-            timestep_.start();
+            time_step_.start();
             while (is_running_) {
                 run_once();
             }
@@ -71,8 +71,8 @@ namespace nephtys::client
         std::filesystem::path assets_path_{nephtys::resources::assets_real_path()};
         config cfg_{nephtys::utils::load_configuration<config>(assets_path_ / "config", "game_config.json")};
         entt::dispatcher dispatcher_;
-        nephtys::timer::time_step timestep_;
-        nephtys::scenes::manager scenes_manager_{timestep_};
+        nephtys::timer::time_step time_step_;
+        nephtys::scenes::manager scenes_manager_{time_step_};
         nephtys::sfml::graphics graphical_system_{cfg_.window};
         nephtys::sfml::input input_system_{graphical_system_.get_win(), dispatcher_};
     };

@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <utility>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -19,6 +20,12 @@ namespace nephtys::sfml::components
 
     struct circle
     {
+        explicit circle(float radius) noexcept : drawable(radius)
+        {
+        }
+
+        circle() = default;
+
         sf::CircleShape drawable;
     };
 
