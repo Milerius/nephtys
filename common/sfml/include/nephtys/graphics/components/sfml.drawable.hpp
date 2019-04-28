@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <type_traits>
+#include <utility>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
