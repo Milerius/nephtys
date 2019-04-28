@@ -41,24 +41,6 @@ add_library(default_settings INTERFACE)
 add_library(nephtys::default_settings ALIAS default_settings)
 target_link_libraries(default_settings INTERFACE nephtys::error_settings nephtys::optimize_settings nephtys::defaults_features)
 
-add_library(noesis SHARED IMPORTED)
-if (APPLE)
-    set_target_properties(noesis PROPERTIES
-            IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/vendor/noesisgui/runtime/osx/Noesis.dylib
-            IMPORTED_GLOBAL TRUE)
-elseif (WIN32)
-    set_target_properties(noesis PROPERTIES
-            IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/vendor/noesisgui/runtime/win64/Noesis.dll
-            IMPORTED_IMPLIB ${PROJECT_SOURCE_DIR}/vendor/noesisgui/lib/win64/Noesis.lib
-            IMPORTED_GLOBAL TRUE)
-else ()
-    set_target_properties(noesis PROPERTIES
-            IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/vendor/noesisgui/runtime/linux/libNoesis.so
-            IMPORTED_GLOBAL TRUE)
-endif ()
-add_library(nephtys::noesis ALIAS noesis)
-
-
 ##! Doom meta
 include(FetchContent)
 #FetchContent_Declare(

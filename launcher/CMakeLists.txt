@@ -11,12 +11,10 @@ target_link_libraries(nephtys_launcher
         nephtys::default_settings
         nephtys::common
         $<$<CXX_COMPILER_ID:GNU>:-static-libstdc++>
-        PRIVATE
-        nephtys::noesis)
+        )
 
 target_include_directories(nephtys_launcher PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${PROJECT_SOURCE_DIR}/vendor/noesisgui/include)
+        ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 if (APPLE)
     include(data/osx/nephtys_launcher_install.cmake)

@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <type_traits>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -19,6 +20,12 @@ namespace nephtys::sfml::components
 
     struct circle
     {
+        template<typename ... Args>
+        circle(Args &&...args) noexcept : drawable{std::forward<Args>(args)...}
+        {
+
+        }
+
         sf::CircleShape drawable;
     };
 
