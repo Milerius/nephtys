@@ -23,7 +23,6 @@ namespace nephtys::sfml::components
         template<typename ... Args>
         circle(Args &&...args) noexcept : drawable{std::forward<Args>(args)...}
         {
-
         }
 
         sf::CircleShape drawable;
