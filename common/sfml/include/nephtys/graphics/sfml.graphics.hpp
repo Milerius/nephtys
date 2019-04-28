@@ -15,28 +15,27 @@ namespace nephtys::sfml
     class graphics
     {
     public:
-        explicit graphics(window::win_cfg &win_cfg, entt::registry<> &entity_registry) noexcept;
+        explicit graphics(window::win_cfg &win_cfg) noexcept;
 
-        const sf::RenderWindow &get_win() const noexcept;
+        [[nodiscard]] const sf::RenderWindow &get_win() const noexcept;
 
         sf::RenderWindow &get_win() noexcept;
 
-        void update() noexcept;
+        void update(entt::registry<> &entity_registry) noexcept;
 
         template <size_t Layer, typename DrawableType>
-        void draw() noexcept;
+        void draw(entt::registry<> &entity_registry) noexcept;
 
         template <size_t Layer, typename... DrawableType>
-        void draw(meta::list<DrawableType...>) noexcept;
+        void draw(entt::registry<> &entity_registry, meta::list<DrawableType...>) noexcept;
 
         template <size_t...Is>
-        void draw_each_layers(std::index_sequence<Is...>) noexcept;
+        void draw_each_layers(entt::registry<> &entity_registry, std::index_sequence<Is...>) noexcept;
 
-        void draw_each_layers() noexcept;
+        void draw_each_layers(entt::registry<> &entity_registry) noexcept;
 
     private:
         window::win_cfg &win_cfg_;
-        entt::registry<> &entity_registry_;
         sf::RenderWindow win_;
     };
 }

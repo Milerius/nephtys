@@ -11,9 +11,8 @@
 
 namespace nephtys::sfml
 {
-    graphics::graphics(window::win_cfg &win_cfg, entt::registry<> &entity_registry) noexcept :
+    graphics::graphics(window::win_cfg &win_cfg) noexcept :
         win_cfg_(win_cfg),
-        entity_registry_(entity_registry),
         win_{sf::VideoMode(win_cfg.width.value(), win_cfg.height.value()), win_cfg_.title}
     {
       VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
@@ -29,18 +28,18 @@ namespace nephtys::sfml
       return win_;
     }
 
-    void graphics::update() noexcept
+    void graphics::update(entt::registry<> &entity_registry) noexcept
     {
       win_.clear();
-      draw_each_layers();
+        draw_each_layers(entity_registry);
       win_.display();
     }
 
     // LCOV_EXCL_START
     template <size_t Layer, typename DrawableType>
-    void graphics::draw() noexcept
+    void graphics::draw(entt::registry<> &entity_registry) noexcept
     {
-      entity_registry_.view<DrawableType, nephtys::components::layer<Layer>>().each(
+        entity_registry.view<DrawableType, nephtys::components::layer<Layer>>().each(
           [this]([[maybe_unused]] auto,
                  auto &&drawable,
                  [[maybe_unused]] auto &&) {
@@ -50,19 +49,19 @@ namespace nephtys::sfml
     // LCOV_EXCL_STOP
 
     template <size_t Layer, typename... DrawableType>
-    void graphics::draw(meta::list<DrawableType...>) noexcept
+    void graphics::draw(entt::registry<> &entity_registry, meta::list<DrawableType...>) noexcept
     {
-      (draw<Layer, DrawableType>(), ...);
+        (draw<Layer, DrawableType>(entity_registry), ...);
     }
 
     template <size_t... Is>
-    void graphics::draw_each_layers(std::index_sequence<Is...>) noexcept
+    void graphics::draw_each_layers(entt::registry<> &entity_registry, std::index_sequence<Is...>) noexcept
     {
-      (draw<Is>(components::drawable_list{}), ...);
+        (draw<Is>(entity_registry, components::drawable_list{}), ...);
     }
 
-    void graphics::draw_each_layers() noexcept
+    void graphics::draw_each_layers(entt::registry<> &entity_registry) noexcept
     {
-      draw_each_layers(std::make_index_sequence<nephtys::components::max_layer>{});
+        draw_each_layers(entity_registry, std::make_index_sequence<nephtys::components::max_layer>{});
     }
 }

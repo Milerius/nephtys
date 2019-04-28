@@ -14,6 +14,10 @@
 #include <nephtys/timer/timestep.hpp>
 #include <nephtys/strong_types/exit_code.hpp>
 #include <nephtys/event/quit_app.hpp>
+#include <nephtys/scenes/scenes.manager.hpp>
+
+//! Temporary
+#include <nephtys/client/scenes/test_scene.hpp>
 
 namespace nephtys::client
 {
@@ -22,37 +26,41 @@ namespace nephtys::client
     public:
         world() noexcept
         {
-          VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
-          DVLOG_F(loguru::Verbosity_INFO, "register quit_app event");
-          dispatcher_.sink<event::quit_app>().connect<&world::receive>(this);
+            VLOG_SCOPE_F(loguru::Verbosity_INFO, "%s", pretty_function);
+            DVLOG_F(loguru::Verbosity_INFO, "register quit_app event");
+            dispatcher_.sink<event::quit_app>().connect<&world::receive>(this);
+
+            //! add current_scene
+            scenes_manager_.add_scene<scenes::test, "test_scene"_hs, true>();
         }
 
         void receive(const event::quit_app &evt) noexcept
         {
-          VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
-          is_running_ = false;
-          exit_code_ = evt.exit_code;
+            VLOG_SCOPE_F(loguru::Verbosity_INFO, pretty_function);
+            is_running_ = false;
+            exit_code_ = evt.exit_code;
         }
 
         // LCOV_EXCL_START
         inline void run_once() noexcept
         {
-          timestep_.start_frame();
-          input_system_.update();
-          while (timestep_.is_update_required()) {
-            graphical_system_.update();
-            timestep_.perform_update();
-          }
+            timestep_.start_frame();
+            input_system_.update();
+            while (timestep_.is_update_required()) {
+                scenes_manager_.update();
+                timestep_.perform_update();
+            }
+            graphical_system_.update(scenes_manager_.get_registry());
         }
 
         inline st::exit_code run() noexcept
         {
-          is_running_ = true;
-          timestep_.start();
-          while (is_running_) {
-            run_once();
-          }
-          return exit_code_;
+            is_running_ = true;
+            timestep_.start();
+            while (is_running_) {
+                run_once();
+            }
+            return exit_code_;
         }
         // LCOV_EXCL_STOP
 
@@ -63,9 +71,10 @@ namespace nephtys::client
         std::filesystem::path assets_path_{nephtys::resources::assets_real_path()};
         config cfg_{nephtys::utils::load_configuration<config>(assets_path_ / "config", "game_config.json")};
         entt::dispatcher dispatcher_;
-        entt::registry<> entity_registry_{};
+        //entt::registry<> entity_registry_{};
         nephtys::timer::time_step timestep_;
-        nephtys::sfml::graphics graphical_system_{cfg_.window, entity_registry_};
+        nephtys::scenes::manager scenes_manager_{timestep_};
+        nephtys::sfml::graphics graphical_system_{cfg_.window};
         nephtys::sfml::input input_system_{graphical_system_.get_win(), dispatcher_};
     };
 }
