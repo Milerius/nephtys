@@ -37,4 +37,10 @@ TEST_CASE ("scene_manager")
         const auto &c_registry = const_cast<const nephtys::scenes::manager &>(sm).get_registry();
                 CHECK_NE(nullptr, std::addressof(c_registry));
     }
+
+            SUBCASE("const scene get registry") {
+        const GameScene scene;
+        const auto &c_registry = scene.get_registry();
+                CHECK_NE(nullptr, std::addressof(c_registry));
+    }
 }
