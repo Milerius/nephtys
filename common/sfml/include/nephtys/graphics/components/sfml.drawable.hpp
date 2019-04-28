@@ -21,7 +21,7 @@ namespace nephtys::sfml::components
     struct circle
     {
         template<typename ... Args>
-        circle(Args &&...args) noexcept : drawable{std::forward<Args>(args)...}
+        explicit circle(Args &&...args) noexcept : drawable(std::forward<Args>(args)...)
         {
         }
 
