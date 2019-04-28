@@ -25,6 +25,13 @@ namespace nephtys::sfml::components
         {
         }
 
+        explicit circle(float radius) noexcept : drawable(radius)
+        {
+
+        }
+
+        circle() = default;
+
         sf::CircleShape drawable;
     };
 
