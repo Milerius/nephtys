@@ -20,7 +20,6 @@ namespace nephtys::client::scenes
 
         void update([[maybe_unused]] nephtys::st::delta_time deltaTime) final
         {
-
         }
 
         ~test() noexcept final

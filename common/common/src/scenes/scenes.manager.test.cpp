@@ -13,7 +13,6 @@ TEST_CASE ("scene_manager")
     {
         void update([[maybe_unused]] nephtys::st::delta_time deltaTime) override
         {
-
         }
     };
     nephtys::timer::time_step ts;
@@ -37,6 +36,5 @@ TEST_CASE ("scene_manager")
 
         const auto &c_registry = const_cast<const nephtys::scenes::manager &>(sm).get_registry();
                 CHECK_NE(nullptr, std::addressof(c_registry));
-
     }
 }

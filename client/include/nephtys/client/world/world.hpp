@@ -71,7 +71,6 @@ namespace nephtys::client
         std::filesystem::path assets_path_{nephtys::resources::assets_real_path()};
         config cfg_{nephtys::utils::load_configuration<config>(assets_path_ / "config", "game_config.json")};
         entt::dispatcher dispatcher_;
-        //entt::registry<> entity_registry_{};
         nephtys::timer::time_step timestep_;
         nephtys::scenes::manager scenes_manager_{timestep_};
         nephtys::sfml::graphics graphical_system_{cfg_.window};
