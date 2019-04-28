@@ -14,9 +14,9 @@ namespace nephtys::sfml
     {
       entt::registry<> entity_registry;
       nephtys::window::win_cfg cfg;
-      nephtys::sfml::graphics graphical_system{cfg, entity_registry};
+        nephtys::sfml::graphics graphical_system{cfg};
           REQUIRE_NE(std::addressof(graphical_system.get_win()), nullptr);
-      entt::dispatcher dispatcher;
+        entt::dispatcher dispatcher{};
       nephtys::sfml::input input_system{graphical_system.get_win(), dispatcher};
       input_system.update();
     }

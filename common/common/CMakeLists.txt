@@ -2,6 +2,7 @@ add_library(nephtys-common INTERFACE)
 target_include_directories(nephtys-common INTERFACE include)
 target_link_libraries(nephtys-common INTERFACE
         CONAN_PKG::doom_strong_types
+        CONAN_PKG::entt
         doom::meta
         nephtys::loguru
         $<$<AND:$<PLATFORM_ID:Linux>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,9.0>>:stdc++fs>
@@ -13,6 +14,12 @@ add_library(nephtys-timer INTERFACE)
 target_link_libraries(nephtys-timer INTERFACE nephtys::common)
 target_sources(nephtys-timer INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src/timer/timestep.cpp)
 add_library(nephtys::timer ALIAS nephtys-timer)
+
+
+add_library(nephtys-scenes INTERFACE)
+target_link_libraries(nephtys-scenes INTERFACE nephtys::common nephtys::timer)
+target_sources(nephtys-scenes INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src/scenes/scenes.manager.cpp)
+add_library(nephtys::scenes ALIAS nephtys-scenes)
 
 add_library(nephtys-resources INTERFACE)
 target_link_libraries(nephtys-resources INTERFACE nephtys::common)
@@ -27,11 +34,12 @@ add_executable(nephtys-common-test)
 target_sources(nephtys-common-test PRIVATE
         src/version.test.cpp test/test.common.cpp
         src/timer/timestep.test.cpp
+        src/scenes/scenes.manager.test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/real_path.test.cpp
         $<$<PLATFORM_ID:Linux>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/linux/real_path.test.cpp>
         $<$<PLATFORM_ID:Darwin>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/osx/real_path.test.cpp>
         $<$<PLATFORM_ID:Windows>:${CMAKE_CURRENT_SOURCE_DIR}/src/resources/details/windows/real_path.test.cpp>)
-target_link_libraries(nephtys-common-test PRIVATE CONAN_PKG::doctest nephtys::default_settings nephtys::timer nephtys::resources)
+target_link_libraries(nephtys-common-test PRIVATE CONAN_PKG::doctest nephtys::default_settings nephtys::timer nephtys::resources nephtys::scenes)
 
 target_include_directories(nephtys-common-test PUBLIC
         include)

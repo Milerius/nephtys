@@ -15,6 +15,7 @@ target_link_libraries(nephtys_client_shared_deps INTERFACE
         CONAN_PKG::jsonformoderncpp
         CONAN_PKG::doom_strong_types
         nephtys::timer
+        nephtys::scenes
         nephtys::default_settings
         nephtys::common
         nephtys::resources
