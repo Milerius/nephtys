@@ -3,8 +3,7 @@
 //
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include <doctest.h>
 
-//! Unit tests
+#include <doctest.h>
 #include <nephtys/client/config/config.hpp>
 #include <nephtys/client/world/world.hpp>
