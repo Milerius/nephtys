@@ -8,3 +8,4 @@
 //! Unit tests
 #include <nephtys/client/config/config.hpp>
 #include <nephtys/client/world/world.hpp>
+#include <nephtys/client/maps/isometric.map.hpp>
