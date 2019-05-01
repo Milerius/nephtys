@@ -63,6 +63,5 @@ namespace nephtys::client::maps
                                      {{0, R"(Assets/Foundations/stoneWall_E.png)", st::height{512}, st::width{256}}}};
         from_json(json_tileset, current_tileset);
                 CHECK_EQ(wanted_tileset, current_tileset);
-
     }
 }
