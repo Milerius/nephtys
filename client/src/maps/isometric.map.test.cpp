@@ -14,6 +14,7 @@ namespace nephtys::client::maps
         auto json_grid = R"({"height":1,"orientation":"isometric","width":1})"_json;
         from_json(json_grid, current_grid);
                 CHECK_EQ(wanted_grid, current_grid);
+                CHECK_NE(current_grid, tiled_grid{});
     }
 
     TEST_CASE ("fill tiled_tile from json")
@@ -28,6 +29,7 @@ namespace nephtys::client::maps
         tiled_tile wanted_tile{0, R"(Assets/Foundations/stoneWall_E.png)", st::height{512}, st::width{256}};
         from_json(json_tile, current_tile);
                 CHECK_EQ(wanted_tile, current_tile);
+                CHECK_NE(current_tile, tiled_tile{});
     }
 
     TEST_CASE ("fill tiled_tileset from json")
