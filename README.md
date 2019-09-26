@@ -29,6 +29,7 @@ To build the project please follow the instructions below:
 mkdir build ## bash or powershell
 cd build ## bash or powershell
 conan install --build missing ../.conan/linux ## osx or windows or linux
+cmake ..
 cmake --build . --config Release
 ```
 
